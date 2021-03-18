@@ -3,12 +3,34 @@
 	"displayName": "Snippets Viewer",
 	"description": "VSCode Snippets Viewer",
 	"version": "1.0.0",
-	"engines": {
-		"vscode": "^1.54.0"
-	},
 	"categories": [
 		"Snippets"
 	],
+	"keywords": [
+		"snippets",
+		"viewer"
+	],
+	"engines": {
+		"vscode": "^1.54.0"
+	},
+	"icon": "images/tab.png",
+	"publisher": "RandomFractalsInc",
+	"author": "Taras Novak",
+	"contributors": [
+		"Taras Novak"
+	],
+	"license": "Apache-2.0",
+	"readme": "README.md",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/RandomFractals/vscode-snippets-viewer"
+	},
+	"bugs": "https://github.com/RandomFractals/vscode-snippets-viewer/issues",
+	"homepage": "https://github.com/RandomFractals/vscode-snippets-viewer/README.md",
+	"galleryBanner": {
+		"color": "#333",
+		"theme": "dark"
+	},
 	"activationEvents": [
 		"onCommand:snippets-viewer.helloWorld"
 	],
