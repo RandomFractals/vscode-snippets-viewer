@@ -32,14 +32,31 @@
 		"theme": "dark"
 	},
 	"activationEvents": [
-		"onCommand:snippets-viewer.helloWorld"
+		"onView:snippets.view"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
-		"commands": [
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "snippets-viewer",
+					"title": "Snippets Viewer",
+					"icon": "images/tab.png"
+				}
+			]
+		},
+		"views": {
+			"snippets-viewer": [
+				{
+					"id": "snippets.view",
+					"name": "Snippets"
+				}
+			]
+		},
+		"viewsWelcome": [
 			{
-				"command": "snippets-viewer.helloWorld",
-				"title": "Hello World"
+				"view": "snippets.view",
+				"contents": "Loading code snippets ..."
 			}
 		]
 	},
