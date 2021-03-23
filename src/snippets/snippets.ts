@@ -4,7 +4,8 @@ import {
   TreeItemCollapsibleState,
   ThemeIcon,
   Uri
-} from 'vscode';
+} 
+from 'vscode';
 
 export class Snippet extends TreeItem {
 	readonly collapsibleState = TreeItemCollapsibleState.None;
@@ -28,7 +29,7 @@ export class Snippet extends TreeItem {
 		this.command = {
 			command: `snippets.viewer.insertSnippet`,
 			title: 'Insert Snippet',
-			arguments: [body],
+			arguments: [body]
 		};
 	}
 }

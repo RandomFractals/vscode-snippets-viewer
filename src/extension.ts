@@ -4,23 +4,24 @@ import {
 	window
 } 
 from 'vscode';
-import * as path from 'path';
 import {registerCommands} from './commands';
+import {SnippetLoader} from './snippets/snippetLoader';
 import {SnippetTreeDataProvider} from './snippets/snippetTreeDataProvider';
 
 export function activate(context: ExtensionContext) {
-	// create snippets sidebar view section
-	const snippetsProvider = new SnippetTreeDataProvider();
+	const snippetLoader: SnippetLoader = new SnippetLoader(); 
+	// create snippets tree view
+	const snippetProvider = new SnippetTreeDataProvider(snippetLoader);
 	window.createTreeView('snippets.view', {
-		treeDataProvider: snippetsProvider,
+		treeDataProvider: snippetProvider,
 		showCollapseAll: false,
 	});
-
+	
 	context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetsProvider.refresh(true))
+		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh(true))
 	);
 
-	// add other snippts commands
+	// add other snippet commands
 	registerCommands(context);
 }
 

@@ -1,16 +1,12 @@
 import { 
   ExtensionContext,
-  Uri,
-  commands,
-  window,
-  workspace
+  commands
 } 
 from 'vscode';
-import {ISnippet} from './snippets/snippet';
 
 export function registerCommands(context: ExtensionContext) {
   context.subscriptions.push(
-    commands.registerCommand(`snippets.viewer.insertSnippet`, (snippetBody: ISnippet['body']) => {
+    commands.registerCommand(`snippets.viewer.insertSnippet`, (snippetBody: string | string[]) => {
       let snippetAsString;
       if (Array.isArray(snippetBody)) {
         snippetAsString = snippetBody.join('\n');
