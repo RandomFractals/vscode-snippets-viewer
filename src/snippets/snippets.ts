@@ -43,7 +43,6 @@ export class SnippetFile extends TreeItem {
 	) {
 		super(label);
 		this.resourceUri = Uri.file(filePath);
-		this.description = this.label;
 		this.iconPath = ThemeIcon.Folder;
 		this.collapsibleState = TreeItemCollapsibleState.Expanded;
 	}

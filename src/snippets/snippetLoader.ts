@@ -34,7 +34,7 @@ export class SnippetLoader {
 		const snippetLanguageMap: Map<string, SnippetLanguage> = new Map<string, SnippetLanguage>();
     extensions.all.forEach(extension => {
       if (!extension.packageJSON.isBuiltin && extension.packageJSON?.contributes?.snippets) {
-				const extensionName = extension.packageJSON?.extensionName;
+				const extensionName = extension.packageJSON?.name;
 				const extensionLocation = extension.packageJSON?.extensionLocation;
 				const snippetsConfig = extension.packageJSON?.contributes?.snippets;
 				if (extensionLocation && Array.isArray(snippetsConfig)) {
