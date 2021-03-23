@@ -1,81 +1,19 @@
 import {
-  Command,
   Event, 
   EventEmitter,
-	MarkdownString,
-  TextEditor,
-  TreeDataProvider, 
+	TreeDataProvider, 
   TreeItem,
-  TreeItemCollapsibleState,
-  ThemeIcon,
-  Uri,
   window,
-  workspace,
   extensions
 } from 'vscode';
+import {
+	SnippetLanguage, 
+	SnippetFile, 
+	Snippet
+} from './snippets'
 import * as jsonc from 'jsonc-parser';
 import * as fs from 'fs';
 import * as path from 'path';
-
-export class Snippet extends TreeItem {
-	readonly collapsibleState = TreeItemCollapsibleState.None;
-	contextValue = 'snippet';
-
-  constructor(
-		readonly label: string,
-		readonly prefix: string,
-		readonly scope: string[],
-		readonly body: string | string[],
-		readonly snippetFile: SnippetFile,
-	) {
-		super(label);		
-		this.scope = [snippetFile.language];
-		let snippetBody = body;
-		if (Array.isArray(body)) {
-			snippetBody = body.join('\n');
-		}
-		this.tooltip = 
-			new MarkdownString(`*${this.prefix}⇥ ${this.label}*\n\`\`\`${snippetFile.language}\n${snippetBody}\n\`\`\``);
-		this.command = {
-			command: `snippets.viewer.insertSnippet`,
-			title: 'Insert Snippet',
-			arguments: [body],
-		};
-	}
-
-	// @ts-expect-error
-	get description() {
-		return this.prefix;
-	}
-}
-
-export class SnippetFile extends TreeItem {
-	contextValue = 'snippetFile';
-
-  constructor(
-		readonly label: string,
-		readonly filePath: string,
-		readonly language: string
-	) {
-		super(label);
-		this.resourceUri = Uri.file(filePath);
-		this.description = this.label;
-		this.iconPath = ThemeIcon.Folder;
-		this.collapsibleState = TreeItemCollapsibleState.Expanded;
-	}
-}
-
-export class SnippetLanguage extends TreeItem {
-	contextValue = 'snippetLanguage';
-	public snippetFiles: SnippetFile[] =  new Array<SnippetFile>();
-
-	constructor(readonly language: string) {
-		super(language);
-		this.iconPath = ThemeIcon.Folder;
-		this.collapsibleState = TreeItemCollapsibleState.Collapsed;
-		this.tooltip = `${language} snippets`;
-	}
-}
 
 export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage | SnippetFile | Snippet> {
 	private readonly _onDidChangeTreeData: EventEmitter<Snippet | undefined> = new EventEmitter<Snippet | undefined>();
