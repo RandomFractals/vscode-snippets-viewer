@@ -16,7 +16,6 @@ import {
 import * as jsonc from 'jsonc-parser';
 import * as fs from 'fs';
 import * as path from 'path';
-import {ISnippet, ISnippetFile} from './snippet';
 
 export class Snippet extends TreeItem {
 	readonly collapsibleState = TreeItemCollapsibleState.None;
@@ -27,7 +26,6 @@ export class Snippet extends TreeItem {
 		readonly prefix: string,
 		readonly scope: string[],
 		readonly body: string | string[],
-		readonly command: Command,
 		readonly snippetFile: SnippetFile,
 	) {
 		super(label);		
@@ -38,9 +36,14 @@ export class Snippet extends TreeItem {
 		}
 		this.tooltip = 
 			new MarkdownString(`*${this.prefix}⇥ ${this.label}*\n\`\`\`${snippetFile.language}\n${snippetBody}\n\`\`\``);
+		this.command = {
+			command: `snippets.viewer.insertSnippet`,
+			title: 'Insert Snippet',
+			arguments: [body],
+		};
 	}
 
-	// @ts-expect-error idk
+	// @ts-expect-error
 	get description() {
 		return this.prefix;
 	}
@@ -56,6 +59,7 @@ export class SnippetFile extends TreeItem {
 	) {
 		super(label);
 		this.resourceUri = Uri.file(filePath);
+		this.description = this.label;
 		this.iconPath = ThemeIcon.Folder;
 		this.collapsibleState = TreeItemCollapsibleState.Expanded;
 	}
@@ -64,6 +68,7 @@ export class SnippetFile extends TreeItem {
 export class SnippetLanguage extends TreeItem {
 	contextValue = 'snippetLanguage';
 	public snippetFiles: SnippetFile[] =  new Array<SnippetFile>();
+
 	constructor(readonly language: string) {
 		super(language);
 		this.iconPath = ThemeIcon.Folder;
@@ -163,11 +168,7 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 		return Promise.resolve(snippetFiles);
 	}
 
-
 	private async getSnippets(snippetFile: SnippetFile, extensionId?: string): Promise<Snippet[]> {
-		/*if (this._snippets[snippetFile.language]) {
-			return Promise.resolve(this._snippets[snippetFile.language]);
-		}*/
     if (!this._snippets[snippetFile.language]) {
       // create new language snippets array
       this._snippets[snippetFile.language] = [];
@@ -182,7 +183,7 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 					return resolve([]);
 				}
 
-				let parsedSnippets: ISnippetFile;
+				let parsedSnippets: any;
 				try {
 					parsedSnippets = jsonc.parse(snippetsConfig); // tslint:disable-line
 				} 
@@ -196,13 +197,8 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 				for (const key in parsedSnippets) {
           const parsedSnippet = parsedSnippets[key];
 					const scope = [snippetFile.language];
-					const snippet: Snippet = new Snippet(key, parsedSnippet.prefix, scope, parsedSnippet.body, {
-							command: `snippets.viewer.insertSnippet`,
-							title: 'Insert Snippet',
-							arguments: [parsedSnippet.body],
-						},
-						snippetFile
-					);
+					const snippet: Snippet = 
+						new Snippet(key, parsedSnippet.prefix, scope, parsedSnippet.body, snippetFile);
 					snippets.push(snippet);
 					this._snippets[snippetFile.language].push(snippet);
 					if (extensionId) {
