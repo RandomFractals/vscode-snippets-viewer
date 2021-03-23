@@ -44,6 +44,12 @@
 				"title": "Refresh",
 				"category": "Snippets Viewer",
 				"icon": "$(refresh)"
+			},
+			{
+				"command": "snippets.viewer.openSnippetFile",
+				"title": "Open Snippet File",
+				"category": "Snippets Viewer",
+				"icon": "$(file)"
 			}
 		],	
 		"menus": {
@@ -52,6 +58,19 @@
 					"command": "snippets.viewer.refreshSnippets",
 					"when": "view == snippets.view",
 					"group": "navigation"
+				}
+			],
+			"view/item/context": [
+				{
+					"command": "snippets.viewer.openSnippetFile",
+					"when": "view == snippets.view",
+					"group": "inline"
+				}
+			],
+			"commandPalette": [
+				{
+					"command": "snippets.viewer.openSnippetFile",
+					"when": "never"
 				}
 			]
 		},
