@@ -3,9 +3,9 @@ import {
   EventEmitter,
 	TreeDataProvider, 
   TreeItem,
-  window,
-  extensions
-} from 'vscode';
+  window
+} 
+from 'vscode';
 import {
 	SnippetLanguage, 
 	SnippetFile, 
@@ -13,13 +13,11 @@ import {
 } 
 from './snippets'
 import {SnippetLoader} from './snippetLoader';
-import * as jsonc from 'jsonc-parser';
-import * as fs from 'fs';
-import * as path from 'path';
 
 export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage | SnippetFile | Snippet> {
-	private readonly _onDidChangeTreeData: EventEmitter<Snippet | undefined> = new EventEmitter<Snippet | undefined>();
-	readonly onDidChangeTreeData: Event<Snippet | undefined> = this._onDidChangeTreeData.event;
+	private readonly _onDidChangeTreeData: EventEmitter<SnippetLanguage | undefined> = 
+		new EventEmitter<SnippetLanguage | undefined>();
+	readonly onDidChangeTreeData: Event<SnippetLanguage | undefined> = this._onDidChangeTreeData.event;
 
 	constructor(private snippetLoader: SnippetLoader) {
   }

@@ -38,6 +38,23 @@
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
+		"commands": [
+			{
+				"command": "snippets.viewer.refreshSnippets",
+				"title": "Refresh",
+				"category": "Snippets Viewer",
+				"icon": "$(refresh)"
+			}
+		],	
+		"menus": {
+			"view/title": [
+				{
+					"command": "snippets.viewer.refreshSnippets",
+					"when": "view == snippets.view",
+					"group": "navigation"
+				}
+			]
+		},
 		"viewsContainers": {
 			"activitybar": [
 				{
