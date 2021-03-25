@@ -11,6 +11,7 @@ import * as path from 'path';
 export class Snippet extends TreeItem {
 	readonly collapsibleState = TreeItemCollapsibleState.None;
 	readonly contextValue = 'snippet';
+
   constructor(
 		readonly label: string,
 		readonly prefix: string,
@@ -37,11 +38,12 @@ export class Snippet extends TreeItem {
 	iconPath = {
 		light: path.join(__filename, '..', '..', 'images', 'light', 'snippet.svg'),
 		dark: path.join(__filename, '..', '..', 'images', 'dark', 'snippet.svg')
-	};	
+	};
 }
 
 export class SnippetFile extends TreeItem {
 	readonly contextValue = 'snippetFile';
+
   constructor(
 		readonly label: string,
 		readonly filePath: string,
@@ -49,9 +51,13 @@ export class SnippetFile extends TreeItem {
 	) {
 		super(label);
 		this.resourceUri = Uri.file(filePath);
-		this.iconPath = ThemeIcon.Folder;
 		this.collapsibleState = TreeItemCollapsibleState.Expanded;
 	}
+
+	iconPath = {
+		light: path.join(__filename, '..', '..', 'images', 'light', 'snippets.svg'),
+		dark: path.join(__filename, '..', '..', 'images', 'dark', 'snippets.svg')
+	};
 }
 
 export class SnippetLanguage extends TreeItem {
