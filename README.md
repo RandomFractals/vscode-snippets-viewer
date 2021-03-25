@@ -2,4 +2,4 @@
 
 Snippets viewer for VSCode
 
-![Snippets Viewer](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer.png)
+![Snippets Viewer Tree View](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-tree-view.png)
