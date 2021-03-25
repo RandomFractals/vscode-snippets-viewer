@@ -50,14 +50,11 @@ export class SnippetFile extends TreeItem {
 		readonly language: string
 	) {
 		super(label);
-		this.resourceUri = Uri.file(filePath);
+		this.iconPath = ThemeIcon.File;
+		this.resourceUri = Uri.file(`_.${getFileExtension(language)}`);
+		this.tooltip = filePath;
 		this.collapsibleState = TreeItemCollapsibleState.Expanded;
 	}
-
-	iconPath = {
-		light: path.join(__filename, '..', '..', 'images', 'light', 'snippets.svg'),
-		dark: path.join(__filename, '..', '..', 'images', 'dark', 'snippets.svg')
-	};
 }
 
 export class SnippetLanguage extends TreeItem {
@@ -65,8 +62,24 @@ export class SnippetLanguage extends TreeItem {
 	public snippetFiles: SnippetFile[] =  new Array<SnippetFile>();
 	constructor(readonly language: string) {
 		super(language);
-		this.iconPath = ThemeIcon.Folder;
+		this.iconPath = ThemeIcon.File;
+		this.resourceUri = Uri.file(`_.${getFileExtension(language)}`);
 		this.collapsibleState = TreeItemCollapsibleState.Collapsed;
 		this.tooltip = `${language} snippets`;
 	}
+}
+
+/**
+ * Maps language to file extension for the file type tree view icon loading.
+ */
+function getFileExtension(language: string): string {
+	let fileExtension: string = language;
+	// map js and ts files
+	if (fileExtension.startsWith('javascript')) {
+		fileExtension = 'js';
+	}
+	else if (fileExtension.startsWith('typescript')) {
+		fileExtension = 'ts';
+	}
+	return fileExtension;
 }
