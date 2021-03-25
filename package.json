@@ -63,7 +63,7 @@
 			"view/item/context": [
 				{
 					"command": "snippets.viewer.openSnippetFile",
-					"when": "view == snippets.view",
+					"when": "view == snippets.view && viewItem != snippetLanguage",
 					"group": "inline"
 				}
 			],
