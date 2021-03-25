@@ -79,7 +79,7 @@
 				{
 					"id": "snippets-viewer",
 					"title": "Snippets Viewer",
-					"icon": "images/tab.png"
+					"icon": "images/snippet-tree.svg"
 				}
 			]
 		},

@@ -1,0 +1,8 @@
+<svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" fill="#666">
+  <rect x="2" y="2" width="30" height="2" />
+  <rect x="8" y="2" width="2" height="6" />
+  <rect x="8" y="8" width="28" height="2" />
+  <rect x="16" y="10" width="2" height="18" />
+  <text x="16" y="22" font-weight="bold">⇥</text>
+  <text x="16" y="32" font-weight="bold">⇥</text>
+</svg>
