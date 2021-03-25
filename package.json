@@ -49,7 +49,7 @@
 				"command": "snippets.viewer.openSnippetFile",
 				"title": "Open Snippet File",
 				"category": "Snippets Viewer",
-				"icon": "$(file)"
+				"icon": "$(symbol-reference)"
 			}
 		],	
 		"menus": {

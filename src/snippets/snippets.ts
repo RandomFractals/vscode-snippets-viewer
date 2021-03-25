@@ -6,6 +6,7 @@ import {
   Uri
 } 
 from 'vscode';
+import * as path from 'path';
 
 export class Snippet extends TreeItem {
 	readonly collapsibleState = TreeItemCollapsibleState.None;
@@ -32,6 +33,11 @@ export class Snippet extends TreeItem {
 			arguments: [body]
 		};
 	}
+
+	iconPath = {
+		light: path.join(__filename, '..', '..', 'images', 'light', 'snippet.svg'),
+		dark: path.join(__filename, '..', '..', 'images', 'dark', 'snippet.svg')
+	};	
 }
 
 export class SnippetFile extends TreeItem {
