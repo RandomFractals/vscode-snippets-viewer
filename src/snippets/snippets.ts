@@ -26,8 +26,9 @@ export class Snippet extends TreeItem {
 		if (Array.isArray(body)) {
 			snippetBody = body.join('\n');
 		}
+		let title: string = `**${this.prefix}⇥ ${this.label}** _(from ${snippetFile.label})_`;
  		this.tooltip = 
-			new MarkdownString(`*${this.prefix}⇥ ${this.label}*\n\`\`\`${snippetFile.language}\n${snippetBody}\n\`\`\``);
+			new MarkdownString(`${title}\n___\n\`\`\`${snippetFile.language}\n${snippetBody}\n\`\`\``);
 		this.command = {
 			command: `snippets.viewer.insertSnippet`,
 			title: 'Insert Snippet',
