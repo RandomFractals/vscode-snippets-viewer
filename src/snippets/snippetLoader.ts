@@ -111,8 +111,8 @@ export class SnippetLoader {
 				for (const key in parsedSnippets) {
           const parsedSnippet = parsedSnippets[key];
 					const scope = [snippetFile.language];
-					const snippet: Snippet = 
-						new Snippet(key, parsedSnippet.prefix, scope, parsedSnippet.body, snippetFile);
+					const snippet: Snippet = new Snippet(key,	parsedSnippet.prefix, scope, 
+						parsedSnippet.description, parsedSnippet.body, snippetFile);
 					snippets.push(snippet);
 					this._snippets[snippetFile.language].push(snippet);
 					if (extensionId) {

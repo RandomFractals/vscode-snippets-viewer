@@ -13,22 +13,26 @@ export class Snippet extends TreeItem {
 	readonly contextValue = 'snippet';
 
   constructor(
-		readonly label: string,
+		readonly name: string,
 		readonly prefix: string,
 		readonly scope: string[],
+		readonly snippetDescription: string,
 		readonly body: string | string[],
 		readonly snippetFile: SnippetFile
 	) {
-		super(label);		
+		super(name);
 		this.scope = [snippetFile.language];
     this.description = prefix;
     let snippetBody = body;
 		if (Array.isArray(body)) {
 			snippetBody = body.join('\n');
 		}
-		let title: string = `**${this.prefix}⇥ ${this.label}** _(from ${snippetFile.label})_`;
- 		this.tooltip = 
-			new MarkdownString(`${title}\n___\n\`\`\`${snippetFile.language}\n${snippetBody}\n\`\`\``);
+		let snippetInfo: string = `**${this.prefix}⇥ ${this.label}** _(from ${snippetFile.label})_\n___`;
+		if (snippetDescription && snippetDescription !== name) {
+			// add description
+			snippetInfo += `\n${snippetDescription}\n___`;
+		}
+ 		this.tooltip = new MarkdownString(`${snippetInfo}\n\`\`\`${snippetFile.language}\n${snippetBody}\n\`\`\``);
 		this.command = {
 			command: `snippets.viewer.insertSnippet`,
 			title: 'Insert Snippet',
