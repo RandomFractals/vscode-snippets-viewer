@@ -41,7 +41,9 @@ export function registerCommands(context: ExtensionContext) {
       }
       workspace.openTextDocument(Uri.file(filePath)).then((document) => {
         window.showTextDocument(document).then(() => {
-          goToSymbol(document, snippet.label);
+          if (snippet instanceof Snippet) {
+            goToSymbol(document, snippet.name);
+          }
         });
       });
     })
