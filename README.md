@@ -19,6 +19,12 @@ Snippets Viewer extension Commands and VSCode Views:
 
 ![Snippets Viewer VSCode Feature Contributions](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-contributions.png)
 
+# Installation
+
+Install [Snippets Viewer ⇥](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.snippets-viewer) via VSCode Extensions tab (`Ctrl+Shift+X`) by searching for `snippets viewer` || via [VSCode marketplace search results](https://marketplace.visualstudio.com/search?term=snippets%20viewer&target=VSCode&category=All%20categories&sortBy=Relevance).
+
+![Snippets Viewer Installation](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-installation.png)
+
 # Dev Build
 
 Use the following commands to build this Snippets Viewer VSCcode extension locally for debugging and submitting pull requests (PRs):
