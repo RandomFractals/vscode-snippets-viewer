@@ -37,13 +37,13 @@ Install [Snippets Viewer ⇥](https://marketplace.visualstudio.com/items?itemNam
 
 [Create User or Workspace Settings in VSCode](http://code.visualstudio.com/docs/customization/userandworkspace#_creating-user-and-workspace-settings) to change default Snippets Viewer extension Settings:
 
+![Snippets Viewer Settings](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-settings.png)
+
 | Setting | Type | Default Value | Description |
 | ------- | ---- | ------------- | ----------- |
 | `snippets.viewer.expendSnippetFiles` | boolean | `false` | Expend snippet files in Snippets tree view on snippet language expend. |
 | `snippets.viewer.showBuiltinExtensionSnippets` | boolean | `true` | Show built-in language extension snippets. |
-| `snippets.viewer.skipLanguageSnippets` | string | `` | Comma delimited list of languages to skip snippets display in Snippets tree view. |
-
-![Snippets Viewer Settings](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-settings.png)
+| `snippets.viewer.skipLanguageSnippets` | string | | Comma delimited list of languages to skip snippets display in Snippets tree view. |
 
 # Dev Build
 
