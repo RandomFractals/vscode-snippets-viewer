@@ -1,6 +1,7 @@
 import {
   window,
-  extensions
+  extensions,
+	workspace
 } from 'vscode';
 import {
 	SnippetLanguage, 
@@ -32,9 +33,11 @@ export class SnippetLoader {
   	// get snippet languages from extension snippet files
 		const snippetLanguages: SnippetLanguage[] = [];
 		const snippetLanguageMap: Map<string, SnippetLanguage> = new Map<string, SnippetLanguage>();
+		const showBuiltInExtensionSnippets: boolean = 
+			<boolean>workspace.getConfiguration('snippets.viewer').get('showBuiltInExtensionSnippets');
     extensions.all.forEach(extension => {
-      if (//!extension.packageJSON.isBuiltin && 
-				extension.packageJSON?.contributes?.snippets) {
+      if ((showBuiltInExtensionSnippets || !extension.packageJSON.isBuiltin) && 
+					extension.packageJSON?.contributes?.snippets) {
 				const extensionName = extension.packageJSON?.displayName;
 				const extensionLocation = extension.packageJSON?.extensionLocation;
 				const snippetsConfig = extension.packageJSON?.contributes?.snippets;

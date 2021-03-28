@@ -9,7 +9,7 @@ import {SnippetLoader} from './snippets/snippetLoader';
 import {SnippetTreeDataProvider} from './snippets/snippetTreeDataProvider';
 
 export function activate(context: ExtensionContext) {
-	const snippetLoader: SnippetLoader = new SnippetLoader(); 
+	const snippetLoader: SnippetLoader = new SnippetLoader();
 	// create snippets tree view
 	const snippetProvider = new SnippetTreeDataProvider(snippetLoader);
 	window.createTreeView('snippets.view', {
