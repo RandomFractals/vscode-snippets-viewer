@@ -2,7 +2,7 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
-## v1.1.0 - [2021-03-28]
+## v1.2.0 - [2021-03-28]
 - [#13](https://github.com/RandomFractals/vscode-snippets-viewer/issues/13)
 Add built-in snippets display to snippets tree view
 - [#18](https://github.com/RandomFractals/vscode-snippets-viewer/issues/18)
