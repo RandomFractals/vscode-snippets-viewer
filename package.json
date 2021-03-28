@@ -96,7 +96,18 @@
 				"view": "snippets.view",
 				"contents": "Loading code snippets ..."
 			}
-		]
+		],
+		"configuration": {
+			"title": "Snippets Viewer",
+			"type": "object",
+			"properties": {
+				"snippets.viewer.showBuiltInExtensionSnippets": {
+					"type": "boolean",
+					"default": true,
+					"description": "Shows built-in extension snippets."
+				}
+			}
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run package",
