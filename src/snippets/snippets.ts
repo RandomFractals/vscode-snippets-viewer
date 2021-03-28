@@ -52,13 +52,14 @@ export class SnippetFile extends TreeItem {
   constructor(
 		readonly label: string,
 		readonly filePath: string,
-		readonly language: string
+		readonly language: string,
+		readonly collapse: TreeItemCollapsibleState
 	) {
 		super(label);
 		this.iconPath = ThemeIcon.File;
 		this.resourceUri = Uri.file(`_.${getFileExtension(language)}`);
 		this.tooltip = filePath;
-		this.collapsibleState = TreeItemCollapsibleState.Expanded;
+		this.collapsibleState = collapse;
 	}
 }
 

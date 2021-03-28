@@ -1,4 +1,5 @@
 import {
+	TreeItemCollapsibleState,
   window,
   extensions,
 	workspace
@@ -42,6 +43,7 @@ export class SnippetLoader {
 			skipLanguageSnippets = skipLanguageSnippets.trim().replace(/\s/g, '');
 			skipLanguages = skipLanguageSnippets.split(',');
 		}
+		const snippetFileCollapsibleState: TreeItemCollapsibleState = this.getSnippetFileCollapsibleState();
     extensions.all.forEach(extension => {
       if ((showBuiltInExtensionSnippets || !extension.packageJSON.isBuiltin) && 
 					extension.packageJSON?.contributes?.snippets) {
@@ -55,7 +57,8 @@ export class SnippetLoader {
 							// create snippets file
 							const snippetFile: SnippetFile = new SnippetFile(extensionName,
 								path.join(extensionLocation.fsPath, snippetConfig.path),
-								language
+								language,
+								snippetFileCollapsibleState
 							);
 							if (!snippetLanguageMap.has(language)) {
 								// create snippets language
@@ -73,6 +76,15 @@ export class SnippetLoader {
 		return Promise.resolve(snippetLanguages);
 	}
 
+	getSnippetFileCollapsibleState(): TreeItemCollapsibleState {
+		const expendSnippetFiles: boolean = 
+			<boolean>workspace.getConfiguration('snippets.viewer').get('expendSnippetFiles');
+		if (expendSnippetFiles) {
+			return TreeItemCollapsibleState.Expanded;
+		}
+		return TreeItemCollapsibleState.Collapsed;
+	}
+
 	async getSnippetFiles(extensionId: string): Promise<SnippetFile[]> {
 		const extension = extensions.getExtension(extensionId);
 		let snippetFiles: SnippetFile[] = [];
@@ -83,11 +95,13 @@ export class SnippetLoader {
 			const extensionLocation = extension.packageJSON?.extensionLocation;
 			const snippetsConfig = extension.packageJSON?.contributes?.snippets;
 			if (extensionLocation && Array.isArray(snippetsConfig)) {
+				const snippetFileCollapsibleState: TreeItemCollapsibleState = this.getSnippetFileCollapsibleState();
   			snippetsConfig.forEach(snippetConfig => {
 					const snippetFile: SnippetFile = new SnippetFile(
 						snippetConfig.language,
 						path.join(extensionLocation.fsPath, snippetConfig.path),
-						snippetConfig.language
+						snippetConfig.language,
+						snippetFileCollapsibleState
 					);
 					snippetFiles.push(snippetFile);
 					this._snippetFiles.push(snippetFile);

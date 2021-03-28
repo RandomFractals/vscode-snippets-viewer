@@ -115,12 +115,17 @@
 				"snippets.viewer.showBuiltInExtensionSnippets": {
 					"type": "boolean",
 					"default": true,
-					"description": "Shows built-in extension snippets."
+					"description": "Show built-in language extension snippets."
 				},
 				"snippets.viewer.skipLanguageSnippets": {
 					"type": "string",
 					"default": "",
-					"description": "Comma delimited list of langueges to skip snippets display in Snippets tree view."
+					"description": "Comma delimited list of languages to skip snippets display in Snippets tree view."
+				},
+				"snippets.viewer.expendSnippetFiles": {
+					"type": "boolean",
+					"default": false,
+					"description": "Expend snippet files in Snippets tree view on snippet language expend."
 				}
 			}
 		}
