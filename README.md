@@ -27,7 +27,7 @@ Extension Snippets Viewer ⇥ for VSCode
 
 # VSCode Contributions
 
-Snippets Viewer extension Commands and VSCode Views:
+Snippets Viewer extension Settings, Commands, and VSCode Views:
 
 ![Snippets Viewer VSCode Feature Contributions](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-contributions.png)
 
