@@ -50,12 +50,23 @@
 				"title": "Open Snippet File",
 				"category": "Snippets Viewer",
 				"icon": "$(symbol-reference)"
+			},
+			{
+				"command": "snippets.viewer.viewSettings",
+				"title": "View Settings",
+				"category": "Snippets Viewer",
+				"icon": "$(gear)"
 			}
 		],	
 		"menus": {
 			"view/title": [
 				{
 					"command": "snippets.viewer.refreshSnippets",
+					"when": "view == snippets.view",
+					"group": "navigation"
+				},
+				{
+					"command": "snippets.viewer.viewSettings",
 					"when": "view == snippets.view",
 					"group": "navigation"
 				}
