@@ -86,5 +86,23 @@ function getFileExtension(language: string): string {
 	else if (fileExtension.startsWith('typescript')) {
 		fileExtension = 'ts';
 	}
+	// map other prog. languages
+	switch (language) {
+		case 'coffeescript':
+			fileExtension = 'coffee';
+			break;
+		case 'csharp':
+			fileExtension = 'cs';
+			break;
+		case 'fsharp':
+			fileExtension = 'fs';
+			break;
+		case 'powershell':
+			fileExtension = 'ps1';
+			break;
+		case 'stylus':
+			fileExtension = 'styl';
+			break;
+	}
 	return fileExtension;
 }
