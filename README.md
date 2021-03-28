@@ -8,7 +8,7 @@
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/RandomFractalsInc.snippets-viewer.svg?color=orange)](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.snippets-viewer)
 [![Downloads](https://vsmarketplacebadge.apphb.com/downloads/RandomFractalsInc.snippets-viewer.svg?color=orange)](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.snippets-viewer)
 
-Extension Snippets Viewer ⇥ for VSCode
+Snippets Viewer ⇥ for VSCode
 
 ![Snippets Viewer Tree View](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-tree-view.png)
 
