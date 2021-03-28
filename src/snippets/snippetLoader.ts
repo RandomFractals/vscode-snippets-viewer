@@ -33,8 +33,15 @@ export class SnippetLoader {
   	// get snippet languages from extension snippet files
 		const snippetLanguages: SnippetLanguage[] = [];
 		const snippetLanguageMap: Map<string, SnippetLanguage> = new Map<string, SnippetLanguage>();
+		let skipLanguages: string[] = [];
 		const showBuiltInExtensionSnippets: boolean = 
 			<boolean>workspace.getConfiguration('snippets.viewer').get('showBuiltInExtensionSnippets');
+		let skipLanguageSnippets: string = 
+			<string>workspace.getConfiguration('snippets.viewer').get('skipLanguageSnippets');
+		if (skipLanguageSnippets.length > 0) {
+			skipLanguageSnippets = skipLanguageSnippets.trim().replace(/\s/g, '');
+			skipLanguages = skipLanguageSnippets.split(',');
+		}
     extensions.all.forEach(extension => {
       if ((showBuiltInExtensionSnippets || !extension.packageJSON.isBuiltin) && 
 					extension.packageJSON?.contributes?.snippets) {
@@ -44,16 +51,21 @@ export class SnippetLoader {
 				if (extensionLocation && Array.isArray(snippetsConfig)) {
 					snippetsConfig.forEach(snippetConfig => {
 						const language: string = snippetConfig.language;
-						const snippetFile: SnippetFile = new SnippetFile(extensionName,
-							path.join(extensionLocation.fsPath, snippetConfig.path),
-							language
-						);
-						if (!snippetLanguageMap.has(language)) {
-							const snippetLanguage: SnippetLanguage = new SnippetLanguage(language);
-							snippetLanguages.push(snippetLanguage);
-							snippetLanguageMap.set(language, snippetLanguage);
+						if (skipLanguages.indexOf(language) < 0) {
+							// create snippets file
+							const snippetFile: SnippetFile = new SnippetFile(extensionName,
+								path.join(extensionLocation.fsPath, snippetConfig.path),
+								language
+							);
+							if (!snippetLanguageMap.has(language)) {
+								// create snippets language
+								const snippetLanguage: SnippetLanguage = new SnippetLanguage(language);
+								snippetLanguages.push(snippetLanguage);
+								snippetLanguageMap.set(language, snippetLanguage);
+							}
+							// add snippet file to language snippets
+							snippetLanguageMap.get(language)?.snippetFiles.push(snippetFile);
 						}
-						snippetLanguageMap.get(language)?.snippetFiles.push(snippetFile);
 					});
 				}
 			}

@@ -116,6 +116,11 @@
 					"type": "boolean",
 					"default": true,
 					"description": "Shows built-in extension snippets."
+				},
+				"snippets.viewer.skipLanguageSnippets": {
+					"type": "string",
+					"default": "",
+					"description": "Comma delimited list of langueges to skip snippets display in Snippets tree view."
 				}
 			}
 		}
