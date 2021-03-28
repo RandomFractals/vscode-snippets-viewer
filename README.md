@@ -15,11 +15,11 @@ Extension Snippets Viewer ⇥ for VSCode
 # Features
 
 - View extension snippets grouped by language in the Snippets Tree View ⎇
-- Open the extension snippets file to view the snippets JSON config
-- Go to the snippet definition in the snippet file
-- See the snippet prefix and shortcut keystrokes in the snippets tree
-- View the snippet description and preview the snippet body code in the snippets tree view markdown tooltip
-- Insert the snippet from the snippets tree view into the active code editor
+- Open an extension snippets file to view snippets JSON config
+- Go to the snippet definition in a snippet file
+- See snippet prefix and shortcut keystrokes in the snippets tree view
+- View snippet description and preview snippet body code in the snippets tree view markdown tooltip
+- Insert a snippet from the snippets tree view into the active code editor
 
 # VSCode Contributions
 
@@ -32,6 +32,18 @@ Snippets Viewer extension Commands and VSCode Views:
 Install [Snippets Viewer ⇥](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.snippets-viewer) via VSCode Extensions tab (`Ctrl+Shift+X`) by searching for `snippets viewer` || via [VSCode marketplace search results](https://marketplace.visualstudio.com/search?term=snippets%20viewer&target=VSCode&category=All%20categories&sortBy=Relevance).
 
 ![Snippets Viewer Installation](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-installation.png)
+
+# Configuration
+
+[Create User or Workspace Settings in VSCode](http://code.visualstudio.com/docs/customization/userandworkspace#_creating-user-and-workspace-settings) to change default Snippets Viewer extension Settings:
+
+| Setting | Type | Default Value | Description |
+| ------- | ---- | ------------- | ----------- |
+| `snippets.viewer.expendSnippetFiles` | boolean | `false` | Expend snippet files in Snippets tree view on snippet language expend. |
+| `snippets.viewer.showBuiltinExtensionSnippets` | boolean | `true` | Show built-in language extension snippets. |
+| `snippets.viewer.skipLanguageSnippets` | string | `` | Comma delimited list of languages to skip snippets display in Snippets tree view. |
+
+![Snippets Viewer Settings](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-settings.png)
 
 # Dev Build
 
