@@ -122,6 +122,11 @@
 					"default": "",
 					"description": "Comma delimited list of languages to skip snippets display in Snippets tree view."
 				},
+				"snippets.viewer.combineLanguageSnippets": {
+					"type": "boolean",
+					"default": false,
+					"description": "Combine language snippets in Snippets tree view."
+				},
 				"snippets.viewer.expendSnippetFiles": {
 					"type": "boolean",
 					"default": false,

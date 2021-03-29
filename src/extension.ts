@@ -24,7 +24,8 @@ export function activate(context: ExtensionContext) {
 
 	// check for tree view settings changes
 	context.subscriptions.push(workspace.onDidChangeConfiguration(config => {
-    if (config.affectsConfiguration('snippets.viewer.expendSnippetFiles') ||
+    if (config.affectsConfiguration('snippets.viewer.combineLanguageSnippets') ||
+				config.affectsConfiguration('snippets.viewer.expendSnippetFiles') ||
 				config.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
 				config.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
 				config.affectsConfiguration('snippets.viewer.sortSnippetsByName')) {
