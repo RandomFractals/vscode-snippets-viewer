@@ -90,13 +90,22 @@ export class SnippetLoader {
 					);
 					snippetFiles.push(snippetFile);
 			  });
-				await Promise.all(snippetFiles.map((file: SnippetFile) => this.getSnippets(file, extensionId)));
+				await Promise.all(snippetFiles.map((file: SnippetFile) => this.getFileSnippets(file)));
 			}
 		}
 		return Promise.resolve(snippetFiles);
 	}
 
-	async getSnippets(snippetFile: SnippetFile, extensionId?: string): Promise<Snippet[]> {
+	async getSnippets(snippetLanguage: SnippetLanguage): Promise<Snippet[]> {
+		const fileSnippets: Snippet[][] = await Promise.all(
+			snippetLanguage.snippetFiles.map((file: SnippetFile) => this.getFileSnippets(file))
+		);
+		const snippets: Snippet[] = [];
+		fileSnippets.forEach(file => file.map(snippet => snippets.push(snippet)));
+		return Promise.resolve(snippets);
+	}
+
+	async getFileSnippets(snippetFile: SnippetFile): Promise<Snippet[]> {
 		return new Promise((resolve, reject) => {
 			fs.readFile(snippetFile.filePath, 'utf8', (error, snippetsConfig) => {
 				if (error) {

@@ -32,13 +32,26 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 
 	async getChildren(element?: SnippetLanguage | SnippetFile): Promise<SnippetLanguage[] | SnippetFile[] | Snippet[]> {
 		if (!element) {
+			// get languages from built-in extensions and snippets extensions
 			return await this.snippetLoader.getSnippetLanguages();
 		}
 		else if (element instanceof SnippetLanguage) {
+			const combineLanguageSnippets: boolean = 
+				<boolean>workspace.getConfiguration('snippets.viewer').get('combineLanguageSnippets');
+			if (combineLanguageSnippets) {
+				const sortSnippetsByName: boolean = 
+					<boolean>workspace.getConfiguration('snippets.viewer').get('sortSnippetsByName');
+					let snippets = await this.snippetLoader.getSnippets(element);
+					if (sortSnippetsByName) {
+						snippets = snippets.sort((a, b) => a.name.localeCompare(b.name));
+					}
+					return snippets;
+			}
 			return element.snippetFiles.sort((a, b) => a.label.localeCompare(b.label));
 		}
 		else if (element instanceof SnippetFile) {
-			let snippets = await this.snippetLoader.getSnippets(element);
+			// get snippets for a snippet file
+			let snippets = await this.snippetLoader.getFileSnippets(element);
 			const sortSnippetsByName: boolean = 
 				<boolean>workspace.getConfiguration('snippets.viewer').get('sortSnippetsByName');
 			if (sortSnippetsByName) {
