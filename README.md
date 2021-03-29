@@ -15,15 +15,16 @@ Snippets Viewer ⇥ for VSCode
 # Features
 
 - View extension snippets grouped by language in the Snippets Tree View ⎇
-- Open an extension snippets file to view snippets JSON config
+- Open extension snippets file to view snippets JSON config
 - Go to the snippet definition in a snippet file
-- See snippet prefix and shortcut keystrokes in the snippets tree view
-- View snippet description and preview snippet body code in the snippets tree view markdown tooltip
-- Insert a snippet from the snippets tree view into the active code editor
-- Toggle built-in language snippets display
-- Skip language snippets in tree view option
-- Expend snippet files option for language tree node expend
-- View snippets settings
+- See snippet prefix and shortcut keystrokes in the Snippets tree view
+- View snippet description and preview snippet body code in the Snippets tree view markdown tooltip
+- Insert a snippet from the Snippets tree view into the active code editor
+- Toggle built-in language extension snippets display
+- Skip language snippets option for specified langauges
+- Expend snippet files on snippet language tree node expend
+- Sort snippets by name
+- View Snippets Viewer settings
 
 # VSCode Contributions
 
