@@ -23,6 +23,7 @@ Snippets Viewer ⇥ for VSCode
 - Toggle built-in language extension snippets display
 - Skip language snippets option for specified languages
 - Expend snippet files on snippet language tree node expend
+- Combine language snippets without snippets extension grouping
 - Sort snippets by name
 - View Snippets Viewer settings
 
