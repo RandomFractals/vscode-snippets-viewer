@@ -26,7 +26,8 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push(workspace.onDidChangeConfiguration(config => {
     if (config.affectsConfiguration('snippets.viewer.expendSnippetFiles') ||
 				config.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
-				config.affectsConfiguration('snippets.viewer.skipLanguageSnippets')) {
+				config.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
+				config.affectsConfiguration('snippets.viewer.sortSnippetsByName')) {
 			snippetProvider.refresh(true);
 		}
 	}));

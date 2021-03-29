@@ -3,7 +3,7 @@ import {
   EventEmitter,
 	TreeDataProvider, 
   TreeItem,
-  window
+  workspace
 } 
 from 'vscode';
 import {
@@ -40,26 +40,15 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 		else if (element instanceof SnippetLanguage) {
 			return element.snippetFiles.sort((a, b) => a.label.localeCompare(b.label));
 		}
-		else if (element.contextValue === 'snippetFile') {
-			const snippets = await this.snippetLoader.getSnippets(element as SnippetFile);
-			return snippets.sort(this.sortByScope);
+		else if (element instanceof SnippetFile) {
+			let snippets = await this.snippetLoader.getSnippets(element);
+			const sortSnippetsByName: boolean = 
+				<boolean>workspace.getConfiguration('snippets.viewer').get('sortSnippetsByName');
+			if (sortSnippetsByName) {
+				snippets = snippets.sort((a, b) => a.name.localeCompare(b.name));
+			}
+			return snippets;
 		}
 		return [];
 	}
-
-	private readonly filterSnippets = (snippet: Snippet): boolean => {
-		// filter snippets by language for the active text editor
-		if (window.activeTextEditor && snippet.scope.length !== 0) {
-			if (!snippet.scope.includes(window.activeTextEditor.document.languageId)) {
-				return false;
-			}
-		}
-		return true;
-	};
-
-  private sortByScope(sn1: Snippet, sn2: Snippet) {
-		const n1 = sn1.scope.length === 1 ? Infinity : sn1.scope.length;
-		const n2 = sn2.scope.length === 1 ? Infinity : sn2.scope.length;
-		return n2 - n1;
-	}  
 }

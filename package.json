@@ -126,6 +126,11 @@
 					"type": "boolean",
 					"default": false,
 					"description": "Expend snippet files on snippet language tree node expend in Snippets tree view."
+				},
+				"snippets.viewer.sortSnippetsByName": {
+					"type": "boolean",
+					"default": false,
+					"description": "Sort loaded snippets by name in Snippets tree view."
 				}
 			}
 		}
