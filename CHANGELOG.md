@@ -2,6 +2,18 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
+## v1.3.0 - [2021-03-29]
+- [#30](https://github.com/RandomFractals/vscode-snippets-viewer/issues/30)
+Auto-update Snippets Tree View on Snippets Viewer Settings changes
+- [#31](https://github.com/RandomFractals/vscode-snippets-viewer/issues/31)
+Sort snippet languages and extension snippet files alphabetically in snippets tree view
+- [#32](https://github.com/RandomFractals/vscode-snippets-viewer/issues/32)
+Add option to sort loaded snippets alphabetically by snippet name
+- [#33](https://github.com/RandomFractals/vscode-snippets-viewer/issues/33)
+Add setting to Combine snippets per language without grouping by extension snipet file
+- [#35](https://github.com/RandomFractals/vscode-snippets-viewer/issues/35)
+Package and publish snippets reload, sorting, and grouping enhancements release
+
 ## v1.2.0 - [2021-03-28]
 - [#13](https://github.com/RandomFractals/vscode-snippets-viewer/issues/13)
 Add built-in snippets display to snippets tree view
