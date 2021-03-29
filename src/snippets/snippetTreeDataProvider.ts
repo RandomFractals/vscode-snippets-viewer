@@ -37,8 +37,8 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 		if (!element) {
 			return await this.snippetLoader.getSnippetLanguages();
 		}
-		else if (element.contextValue === 'snippetLanguage') {
-			return (element as SnippetLanguage).snippetFiles;
+		else if (element instanceof SnippetLanguage) {
+			return element.snippetFiles.sort((a, b) => a.label.localeCompare(b.label));
 		}
 		else if (element.contextValue === 'snippetFile') {
 			const snippets = await this.snippetLoader.getSnippets(element as SnippetFile);

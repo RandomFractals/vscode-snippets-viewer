@@ -73,7 +73,7 @@ export class SnippetLoader {
 				}
 			}
     });
-		return Promise.resolve(snippetLanguages);
+		return Promise.resolve(snippetLanguages.sort((a, b) => a.language.localeCompare(b.language)));
 	}
 
 	getSnippetFileCollapsibleState(): TreeItemCollapsibleState {
