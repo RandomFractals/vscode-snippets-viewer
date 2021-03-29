@@ -21,7 +21,7 @@ Snippets Viewer ⇥ for VSCode
 - View snippet description and preview snippet body code in the Snippets tree view markdown tooltip
 - Insert a snippet from the Snippets tree view into the active code editor
 - Toggle built-in language extension snippets display
-- Skip language snippets option for specified langauges
+- Skip language snippets option for specified languages
 - Expend snippet files on snippet language tree node expend
 - Sort snippets by name
 - View Snippets Viewer settings

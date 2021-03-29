@@ -22,10 +22,7 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 	constructor(private snippetLoader: SnippetLoader) {
   }
 
-	refresh(clearSnippets: boolean): void {
-		if (clearSnippets) {
-			this.snippetLoader.refresh(clearSnippets);
-		}
+	refresh(): void {
 		this._onDidChangeTreeData.fire(undefined);
 	}
 

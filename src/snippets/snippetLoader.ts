@@ -15,20 +15,8 @@ import * as path from 'path';
 
 export class SnippetLoader {
 
-	private _snippets: {[language: string]: Snippet[]} = {};
-	private _snippetFiles: SnippetFile[] = new Array<SnippetFile>();
-	private _snippetExtensions: {[extensionId: string]: Snippet[]} = {};
-
 	constructor() {
   }
-
-	refresh(clearSnippets: boolean): void {
-		if (clearSnippets) {
-			this._snippets = {};
-			this._snippetExtensions = {};
-			this._snippetFiles = [];
-		}
-	}
 
 	async getSnippetLanguages(): Promise<SnippetLanguage[]> {
   	// get snippet languages from extension snippet files
@@ -88,9 +76,6 @@ export class SnippetLoader {
 	async getSnippetFiles(extensionId: string): Promise<SnippetFile[]> {
 		const extension = extensions.getExtension(extensionId);
 		let snippetFiles: SnippetFile[] = [];
-		if (!this._snippetExtensions[extensionId]) {
-			this._snippetExtensions[extensionId] = [];
-		}
 		if (extension) {
 			const extensionLocation = extension.packageJSON?.extensionLocation;
 			const snippetsConfig = extension.packageJSON?.contributes?.snippets;
@@ -104,7 +89,6 @@ export class SnippetLoader {
 						snippetFileCollapsibleState
 					);
 					snippetFiles.push(snippetFile);
-					this._snippetFiles.push(snippetFile);
 			  });
 				await Promise.all(snippetFiles.map((file: SnippetFile) => this.getSnippets(file, extensionId)));
 			}
@@ -113,10 +97,6 @@ export class SnippetLoader {
 	}
 
 	async getSnippets(snippetFile: SnippetFile, extensionId?: string): Promise<Snippet[]> {
-    if (!this._snippets[snippetFile.language]) {
-      // create new language snippets array
-      this._snippets[snippetFile.language] = [];
-    }
 		return new Promise((resolve, reject) => {
 			fs.readFile(snippetFile.filePath, 'utf8', (error, snippetsConfig) => {
 				if (error) {
@@ -144,10 +124,6 @@ export class SnippetLoader {
 					const snippet: Snippet = new Snippet(key,	parsedSnippet.prefix, scope, 
 						parsedSnippet.description, parsedSnippet.body, snippetFile);
 					snippets.push(snippet);
-					this._snippets[snippetFile.language].push(snippet);
-					if (extensionId) {
-						this._snippetExtensions[extensionId].push(snippet);
-					}
 				}
 				return resolve(snippets);
 			});

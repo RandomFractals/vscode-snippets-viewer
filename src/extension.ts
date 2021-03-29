@@ -19,7 +19,7 @@ export function activate(context: ExtensionContext) {
 	});
 	
 	context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh(true))
+		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh())
 	);
 
 	// check for tree view settings changes
@@ -29,7 +29,7 @@ export function activate(context: ExtensionContext) {
 				config.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
 				config.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
 				config.affectsConfiguration('snippets.viewer.sortSnippetsByName')) {
-			snippetProvider.refresh(true);
+			snippetProvider.refresh();
 		}
 	}));
 
