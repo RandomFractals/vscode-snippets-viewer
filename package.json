@@ -115,7 +115,7 @@
 				"snippets.viewer.showBuiltInExtensionSnippets": {
 					"type": "boolean",
 					"default": true,
-					"description": "Show built-in language extension snippets."
+					"description": "Show built-in language extension snippets in Snippets tree view."
 				},
 				"snippets.viewer.skipLanguageSnippets": {
 					"type": "string",
@@ -125,7 +125,7 @@
 				"snippets.viewer.expendSnippetFiles": {
 					"type": "boolean",
 					"default": false,
-					"description": "Expend snippet files in Snippets tree view on snippet language expend."
+					"description": "Expend snippet files on snippet language tree node expend in Snippets tree view."
 				}
 			}
 		}

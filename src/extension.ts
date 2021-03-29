@@ -1,7 +1,8 @@
 import {
 	ExtensionContext,
 	commands,
-	window
+	window,
+	workspace
 } 
 from 'vscode';
 import {registerCommands} from './commands';
@@ -20,6 +21,15 @@ export function activate(context: ExtensionContext) {
 	context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh(true))
 	);
+
+	// check for tree view settings changes
+	context.subscriptions.push(workspace.onDidChangeConfiguration(config => {
+    if (config.affectsConfiguration('snippets.viewer.expendSnippetFiles') ||
+				config.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
+				config.affectsConfiguration('snippets.viewer.skipLanguageSnippets')) {
+			snippetProvider.refresh(true);
+		}
+	}));
 
 	// add other snippet commands
 	registerCommands(context);

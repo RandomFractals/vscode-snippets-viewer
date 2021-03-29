@@ -45,8 +45,8 @@ Install [Snippets Viewer ⇥](https://marketplace.visualstudio.com/items?itemNam
 
 | Setting | Type | Default Value | Description |
 | ------- | ---- | ------------- | ----------- |
-| `snippets.viewer.expendSnippetFiles` | boolean | `false` | Expend snippet files in Snippets tree view on snippet language expend. |
-| `snippets.viewer.showBuiltinExtensionSnippets` | boolean | `true` | Show built-in language extension snippets. |
+| `snippets.viewer.expendSnippetFiles` | boolean | `false` | Expend snippet files on snippet language tree node expend in Snippets tree view.|
+| `snippets.viewer.showBuiltInExtensionSnippets` | boolean | `true` | Show built-in language extension snippets in Snippets tree view. |
 | `snippets.viewer.skipLanguageSnippets` | string | | Comma delimited list of languages to skip snippets display in Snippets tree view. |
 
 # Dev Build
