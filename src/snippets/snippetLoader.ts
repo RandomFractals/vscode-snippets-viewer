@@ -1,14 +1,14 @@
 import {
 	TreeItemCollapsibleState,
   window,
-  extensions,
-	workspace
+  extensions
 } from 'vscode';
 import {
 	SnippetLanguage, 
 	SnippetFile, 
 	Snippet
 } from './snippets'
+import * as config from '../config';
 import * as jsonc from 'jsonc-parser';
 import * as fs from 'fs';
 import * as path from 'path';
@@ -22,15 +22,8 @@ export class SnippetLoader {
   	// get snippet languages from extension snippet files
 		const snippetLanguages: SnippetLanguage[] = [];
 		const snippetLanguageMap: Map<string, SnippetLanguage> = new Map<string, SnippetLanguage>();
-		let skipLanguages: string[] = [];
-		const showBuiltInExtensionSnippets: boolean = 
-			<boolean>workspace.getConfiguration('snippets.viewer').get('showBuiltInExtensionSnippets');
-		let skipLanguageSnippets: string = 
-			<string>workspace.getConfiguration('snippets.viewer').get('skipLanguageSnippets');
-		if (skipLanguageSnippets.length > 0) {
-			skipLanguageSnippets = skipLanguageSnippets.trim().replace(/\s/g, '');
-			skipLanguages = skipLanguageSnippets.split(',');
-		}
+		const skipLanguages: string[] = config.skipLanguages();
+		const showBuiltInExtensionSnippets = config.showBuiltInExtensionSnippets();
 		const snippetFileCollapsibleState: TreeItemCollapsibleState = this.getSnippetFileCollapsibleState();
     extensions.all.forEach(extension => {
       if ((showBuiltInExtensionSnippets || !extension.packageJSON.isBuiltin) && 
@@ -65,9 +58,7 @@ export class SnippetLoader {
 	}
 
 	getSnippetFileCollapsibleState(): TreeItemCollapsibleState {
-		const expendSnippetFiles: boolean = 
-			<boolean>workspace.getConfiguration('snippets.viewer').get('expendSnippetFiles');
-		if (expendSnippetFiles) {
+		if (config.expendSnippetFiles()) {
 			return TreeItemCollapsibleState.Expanded;
 		}
 		return TreeItemCollapsibleState.Collapsed;

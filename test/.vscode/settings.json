@@ -1,5 +1,5 @@
 {
   "editor.tabSize": 2,
-  "snippets.viewer.skipLanguageSnippets": "bat, c, csharp, cpp, coffeescript, fsharp, swift, vb, wat",
+  "snippets.viewer.skipLanguageSnippets": "bat, c, csharp, cpp, coffeescript, fsharp, javascriptreact, swift, typescriptreact, vb, wat",
   "snippets.viewer.combineLanguageSnippets": true
 }

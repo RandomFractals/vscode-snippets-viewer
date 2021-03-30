@@ -2,8 +2,7 @@ import {
   Event, 
   EventEmitter,
 	TreeDataProvider, 
-  TreeItem,
-  workspace
+  TreeItem
 } 
 from 'vscode';
 import {
@@ -13,6 +12,7 @@ import {
 } 
 from './snippets'
 import {SnippetLoader} from './snippetLoader';
+import * as config from '../config';
 
 export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage | SnippetFile | Snippet> {
 	private readonly _onDidChangeTreeData: EventEmitter<SnippetLanguage | undefined> = 
@@ -36,25 +36,19 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 			return await this.snippetLoader.getSnippetLanguages();
 		}
 		else if (element instanceof SnippetLanguage) {
-			const combineLanguageSnippets: boolean = 
-				<boolean>workspace.getConfiguration('snippets.viewer').get('combineLanguageSnippets');
-			if (combineLanguageSnippets) {
-				const sortSnippetsByName: boolean = 
-					<boolean>workspace.getConfiguration('snippets.viewer').get('sortSnippetsByName');
-					let snippets = await this.snippetLoader.getSnippets(element);
-					if (sortSnippetsByName) {
-						snippets = snippets.sort((a, b) => a.name.localeCompare(b.name));
-					}
-					return snippets;
+			if (config.combineLanguageSnippets()) {
+				let snippets = await this.snippetLoader.getSnippets(element);
+				if (config.sortSnippetsByName()) {
+					snippets = snippets.sort((a, b) => a.name.localeCompare(b.name));
+				}
+				return snippets;
 			}
 			return element.snippetFiles.sort((a, b) => a.label.localeCompare(b.label));
 		}
 		else if (element instanceof SnippetFile) {
 			// get snippets for a snippet file
 			let snippets = await this.snippetLoader.getFileSnippets(element);
-			const sortSnippetsByName: boolean = 
-				<boolean>workspace.getConfiguration('snippets.viewer').get('sortSnippetsByName');
-			if (sortSnippetsByName) {
+			if (config.sortSnippetsByName()) {
 				snippets = snippets.sort((a, b) => a.name.localeCompare(b.name));
 			}
 			return snippets;
