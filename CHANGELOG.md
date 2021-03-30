@@ -2,6 +2,14 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
+## v1.4.0 - [2021-03-30]
+- [#10](https://github.com/RandomFractals/vscode-snippets-viewer/issues/10)
+Auto-select and expend snippets language node based on active editor language id
+- [#37](https://github.com/RandomFractals/vscode-snippets-viewer/issues/37)
+Map javascriptreact and typescriptreact snippets file icons to what editor shows in file titlebar
+- [#39](https://github.com/RandomFractals/vscode-snippets-viewer/issues/39)
+Move all getConfiguration calls to new config.ts
+
 ## v1.3.0 - [2021-03-29]
 - [#30](https://github.com/RandomFractals/vscode-snippets-viewer/issues/30)
 Auto-update Snippets Tree View on Snippets Viewer Settings changes
