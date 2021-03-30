@@ -23,7 +23,7 @@ export function activate(context: ExtensionContext) {
 
 	// check for active editor changes
 	window.onDidChangeActiveTextEditor((textEditor: TextEditor | undefined) => {
-		if (textEditor) {
+		if (textEditor && snippetView.visible) {
 			const editorLanguage: string = textEditor.document.languageId;
 			const snippetsLanguage: SnippetLanguage | undefined = snippetLoader.snippetLanguages.get(editorLanguage);
 			if (snippetsLanguage) {
