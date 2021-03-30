@@ -80,14 +80,7 @@ export class SnippetLanguage extends TreeItem {
  */
 function getFileExtension(language: string): string {
 	let fileExtension: string = language;
-	// map js and ts files
-	if (fileExtension.startsWith('javascript')) {
-		fileExtension = 'js';
-	}
-	else if (fileExtension.startsWith('typescript')) {
-		fileExtension = 'ts';
-	}
-	// map other prog. languages
+	// map language to file extension
 	switch (language) {
 		case 'coffeescript':
 			fileExtension = 'coffee';
@@ -98,12 +91,24 @@ function getFileExtension(language: string): string {
 		case 'fsharp':
 			fileExtension = 'fs';
 			break;
+		case 'javascript':
+			fileExtension = 'js';
+			break;
+		case 'javascriptreact':
+			fileExtension = 'jsx';
+			break;	
 		case 'powershell':
 			fileExtension = 'ps1';
 			break;
 		case 'stylus':
 			fileExtension = 'styl';
 			break;
+		case 'typescript':
+			fileExtension = 'ts';
+			break;
+		case 'typescriptreact':
+			fileExtension = 'tsx';
+			break;		
 	}
 	return fileExtension;
 }
