@@ -9,6 +9,8 @@ Auto-select and expend snippets language node based on active editor language id
 Map javascriptreact and typescriptreact snippets file icons to what editor shows in file titlebar
 - [#39](https://github.com/RandomFractals/vscode-snippets-viewer/issues/39)
 Move all getConfiguration calls to new config.ts
+- [#40](https://github.com/RandomFractals/vscode-snippets-viewer/issues/40)
+Add better keywords to extension manifest
 
 ## v1.3.0 - [2021-03-29]
 - [#30](https://github.com/RandomFractals/vscode-snippets-viewer/issues/30)

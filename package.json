@@ -8,7 +8,16 @@
 	],
 	"keywords": [
 		"snippets",
-		"viewer"
+		"viewer",
+		"snippets tree view ⎇",
+		"snippet preview",
+		"view snippet file",
+		"view snippet definition",
+		"sort snippets",
+		"toggle snippets",
+		"group snippets",
+		"view snippet languages",
+		"skip language snippets"
 	],
 	"engines": {
 		"vscode": "^1.54.0"
