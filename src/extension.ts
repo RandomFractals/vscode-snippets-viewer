@@ -1,23 +1,42 @@
 import {
 	ExtensionContext,
+	TextEditor,
 	commands,
 	window,
-	workspace
+	workspace,
+	TreeView
 } 
 from 'vscode';
 import {registerCommands} from './commands';
 import {SnippetLoader} from './snippets/snippetLoader';
+import {SnippetLanguage} from './snippets/snippets';
 import {SnippetTreeDataProvider} from './snippets/snippetTreeDataProvider';
 
 export function activate(context: ExtensionContext) {
-	const snippetLoader: SnippetLoader = new SnippetLoader();
 	// create snippets tree view
-	const snippetProvider = new SnippetTreeDataProvider(snippetLoader);
-	window.createTreeView('snippets.view', {
+	const snippetLoader: SnippetLoader = new SnippetLoader();
+	const snippetProvider: SnippetTreeDataProvider = new SnippetTreeDataProvider(snippetLoader);
+	const snippetView = window.createTreeView('snippets.view', {
 		treeDataProvider: snippetProvider,
 		showCollapseAll: false,
 	});
-	
+
+	// check for active editor changes
+	window.onDidChangeActiveTextEditor((textEditor: TextEditor | undefined) => {
+		if (textEditor) {
+			const editorLanguage: string = textEditor.document.languageId;
+			const snippetsLanguage: SnippetLanguage | undefined = snippetLoader.snippetLanguages.get(editorLanguage);
+			if (snippetsLanguage) {
+				snippetView.reveal(snippetsLanguage, {
+					select: true, 
+					focus: true,
+					expand: true
+				});
+			}
+		}
+	});
+
+	// add snippets refresh command
 	context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh())
 	);
@@ -33,7 +52,7 @@ export function activate(context: ExtensionContext) {
 		}
 	}));
 
-	// add other snippet commands
+	// add other snippet viewer commands
 	registerCommands(context);
 }
 
