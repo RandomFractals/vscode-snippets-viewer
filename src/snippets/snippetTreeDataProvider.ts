@@ -30,6 +30,17 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 		return element;
 	}
 
+	getParent(element: SnippetLanguage | SnippetFile | Snippet): SnippetLanguage | SnippetFile | undefined {
+		let snippetParent: SnippetLanguage | SnippetFile | undefined;
+		if (element instanceof Snippet) {
+			snippetParent = element.snippetFile;
+		}
+		else if (element instanceof SnippetFile) {
+			snippetParent = this.snippetLoader.snippetLanguages.get(element.language);
+		}
+		return snippetParent;
+	}
+
 	async getChildren(element?: SnippetLanguage | SnippetFile): Promise<SnippetLanguage[] | SnippetFile[] | Snippet[]> {
 		if (!element) {
 			// get languages from built-in extensions and snippets extensions
