@@ -15,13 +15,15 @@ import * as path from 'path';
 
 export class SnippetLoader {
 
+	public snippetLanguages: Map<string, SnippetLanguage> = new Map<string, SnippetLanguage>();
+
 	constructor() {
   }
 
 	async getSnippetLanguages(): Promise<SnippetLanguage[]> {
+		this.snippetLanguages.clear();
   	// get snippet languages from extension snippet files
 		const snippetLanguages: SnippetLanguage[] = [];
-		const snippetLanguageMap: Map<string, SnippetLanguage> = new Map<string, SnippetLanguage>();
 		const skipLanguages: string[] = config.skipLanguages();
 		const showBuiltInExtensionSnippets = config.showBuiltInExtensionSnippets();
 		const snippetFileCollapsibleState: TreeItemCollapsibleState = this.getSnippetFileCollapsibleState();
@@ -41,14 +43,14 @@ export class SnippetLoader {
 								language,
 								snippetFileCollapsibleState
 							);
-							if (!snippetLanguageMap.has(language)) {
+							if (!this.snippetLanguages.has(language)) {
 								// create snippets language
 								const snippetLanguage: SnippetLanguage = new SnippetLanguage(language);
 								snippetLanguages.push(snippetLanguage);
-								snippetLanguageMap.set(language, snippetLanguage);
+								this.snippetLanguages.set(language, snippetLanguage);
 							}
 							// add snippet file to language snippets
-							snippetLanguageMap.get(language)?.snippetFiles.push(snippetFile);
+							this.snippetLanguages.get(language)?.snippetFiles.push(snippetFile);
 						}
 					});
 				}
