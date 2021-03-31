@@ -51,6 +51,18 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
 	);
 
   context.subscriptions.push(
+		commands.registerCommand(`snippets.viewer.skipLanguageSnippets`, () => {
+      commands.executeCommand('workbench.action.openSettings', 'snippets.viewer.skipLanguageSnippets');
+    })
+	);
+
+  context.subscriptions.push(
+		commands.registerCommand(`snippets.viewer.viewSettings`, () => {
+      commands.executeCommand('workbench.action.openSettings', 'snippets.viewer');
+    })
+	);
+
+  context.subscriptions.push(
     commands.registerCommand(`snippets.viewer.insertSnippet`, (snippetBody: string | string[]) => {
       let snippetAsString;
       if (Array.isArray(snippetBody)) {
@@ -81,14 +93,6 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
       });
     })
   );
-
-  context.subscriptions.push(
-    commands.registerCommand(`snippets.viewer.viewSettings`, viewSettings)
-  );
-}
-
-async function viewSettings() {
-  commands.executeCommand( 'workbench.action.openSettings', 'snippets.viewer' );
 }
 
 async function goToSymbol(document: TextDocument, symbolName: string) {
