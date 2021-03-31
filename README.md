@@ -25,12 +25,13 @@ Snippets Viewer ⇥ for VSCode
 - Skip language snippets option for the specified languages in extension settings
 - Expend snippet files on snippet language tree node expend
 - Combine language snippets without snippets extension name grouping
+- Sort snippets by definition order in a snippet file
 - Sort snippets by name
 - View Snippets Viewer settings
 
 # VSCode Contributions
 
-Snippets Viewer extension Settings, Commands, and VSCode Views:
+Snippets Viewer ⇥ extension Settings, Commands, and VSCode Views:
 
 ![Snippets Viewer VSCode Feature Contributions](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-contributions.png)
 
@@ -42,16 +43,16 @@ Install [Snippets Viewer ⇥](https://marketplace.visualstudio.com/items?itemNam
 
 # Configuration
 
-[Create User or Workspace Settings in VSCode](http://code.visualstudio.com/docs/customization/userandworkspace#_creating-user-and-workspace-settings) to change default Snippets Viewer extension Settings:
+[Create User or Workspace Settings in VSCode](http://code.visualstudio.com/docs/customization/userandworkspace#_creating-user-and-workspace-settings) to change default Snippets Viewer ⇥ extension Settings:
 
 ![Snippets Viewer Settings](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-settings.png)
 
 | Setting | Type | Default Value | Description |
 | ------- | ---- | ------------- | ----------- |
-| `snippets.viewer.combineLanguageSnippets` | boolean | `false` | Combine language snippets in Snippets tree view.|
-| `snippets.viewer.expendSnippetFiles` | boolean | `false` | Expend snippet files on snippet language tree node expend in Snippets tree view.|
-| `snippets.viewer.showBuiltInExtensionSnippets` | boolean | `true` | Show built-in language extension snippets in Snippets tree view. |
-| `snippets.viewer.skipLanguageSnippets` | string | | Comma delimited list of languages to skip snippets display in Snippets tree view. |
+| `snippets.viewer.combineLanguageSnippets` | boolean | `false` | Combine language snippets in the Snippets tree view.|
+| `snippets.viewer.expendSnippetFiles` | boolean | `false` | Expend snippet files on snippet language tree node expend in the Snippets tree view.|
+| `snippets.viewer.showBuiltInExtensionSnippets` | boolean | `true` | Show built-in language extension snippets in the Snippets tree view. |
+| `snippets.viewer.skipLanguageSnippets` | string | | Comma delimited list of languages to skip snippets display in the Snippets tree view. |
 | `snippets.viewer.sortSnippetsByName` | boolean | `false` | Sort loaded snippets by name in Snippets tree view. |
 
 # Dev Build
