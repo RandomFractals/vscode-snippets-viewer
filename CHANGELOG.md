@@ -2,6 +2,16 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
+## v1.5.0 - [2021-03-31]
+- [#17](https://github.com/RandomFractals/vscode-snippets-viewer/issues/17)
+Add combine snippets by language, group by snippet file, and collapse all snippets tree view toggles
+- [#43](https://github.com/RandomFractals/vscode-snippets-viewer/issues/43)
+Add Sort Snippets by Name and by Definition Order toggles to the Snippets Tree view
+- [#44](https://github.com/RandomFractals/vscode-snippets-viewer/issues/44)
+Add Filter toggle to the Snippets Tree view title bar
+- [#45](https://github.com/RandomFractals/vscode-snippets-viewer/issues/45)
+Package and publish Snippets tree view toggles update
+
 ## v1.4.0 - [2021-03-30]
 - [#10](https://github.com/RandomFractals/vscode-snippets-viewer/issues/10)
 Auto-select and expend snippets language node based on active editor language id
