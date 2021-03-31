@@ -44,6 +44,8 @@
 		"onCommand:snippets.viewer.combineLanguageSnippets",
 		"onCommand:snippets.viewer.groupSnippetsByFile",
 		"onCommand:snippets.viewer.refreshSnippets",
+		"onCommand:snippets.viewer.sortSnippetsByName",
+		"onCommand:snippets.viewer.sortSnippetsByDefinitionOrder",
 		"onCommand:snippets.viewer.openSnippetFile",
 		"onCommand:snippets.viewer.insertSnippet",
 		"onCommand:snippets.viewer.viewSettings",
@@ -63,6 +65,18 @@
 				"title": "Group Snippets by File",
 				"category": "Snippets Viewer",
 				"icon": "$(chevron-right)"
+			},
+			{
+				"command": "snippets.viewer.sortSnippetsByName",
+				"title": "Sort Snippets by Name",
+				"category": "Snippets Viewer",
+				"icon": "$(arrow-down)"
+			},
+			{
+				"command": "snippets.viewer.sortSnippetsByDefinitionOrder",
+				"title": "Sort Snippets by Definition Order",
+				"category": "Snippets Viewer",
+				"icon": "$(ungroup-by-ref-type)"
 			},
 			{
 				"command": "snippets.viewer.refreshSnippets",
@@ -98,6 +112,16 @@
 				},
 				{
 					"command": "snippets.viewer.groupSnippetsByFile",
+					"when": "view == snippets.view",
+					"group": "navigation"
+				},
+				{
+					"command": "snippets.viewer.sortSnippetsByName",
+					"when": "view == snippets.view",
+					"group": "navigation"
+				},
+				{
+					"command": "snippets.viewer.sortSnippetsByDefinitionOrder",
 					"when": "view == snippets.view",
 					"group": "navigation"
 				},

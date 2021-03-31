@@ -37,6 +37,20 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
 	);
 
   context.subscriptions.push(
+		commands.registerCommand(`snippets.viewer.sortSnippetsByName`, () => {
+      snippetProvider.sortSnippetsByName = true;
+      snippetProvider.refresh();
+    })
+	);
+
+  context.subscriptions.push(
+		commands.registerCommand(`snippets.viewer.sortSnippetsByDefinitionOrder`, () => {
+      snippetProvider.sortSnippetsByName = false;
+      snippetProvider.refresh();
+    })
+	);
+
+  context.subscriptions.push(
     commands.registerCommand(`snippets.viewer.insertSnippet`, (snippetBody: string | string[]) => {
       let snippetAsString;
       if (Array.isArray(snippetBody)) {

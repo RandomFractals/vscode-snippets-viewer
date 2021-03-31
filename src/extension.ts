@@ -19,10 +19,10 @@ export function activate(context: ExtensionContext) {
 	const snippetProvider: SnippetTreeDataProvider = new SnippetTreeDataProvider(snippetLoader);
 	const snippetView = window.createTreeView('snippets.view', {
 		treeDataProvider: snippetProvider,
-		showCollapseAll: true,
+		showCollapseAll: true
 	});
 
-	// check for active editor changes
+	// expend and select snippets language node on active text editor change
 	window.onDidChangeActiveTextEditor((textEditor: TextEditor | undefined) => {
 		if (textEditor && snippetView.visible) {
 			const editorLanguage: string = textEditor.document.languageId;
@@ -37,14 +37,19 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 
-	// check for tree view settings changes
+	// update snippets tree view setttings and refresh
 	context.subscriptions.push(workspace.onDidChangeConfiguration(workspaceConfig => {
-    if (workspaceConfig.affectsConfiguration('snippets.viewer.combineLanguageSnippets') ||
-				workspaceConfig.affectsConfiguration('snippets.viewer.expendSnippetFiles') ||
-				workspaceConfig.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
-				workspaceConfig.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
-				workspaceConfig.affectsConfiguration('snippets.viewer.sortSnippetsByName')) {
+    if (workspaceConfig.affectsConfiguration('snippets.viewer.combineLanguageSnippets')) {
 			snippetProvider.combineLanguageSnippets = config.combineLanguageSnippets();
+			snippetProvider.refresh();
+		}
+		else if (workspaceConfig.affectsConfiguration('snippets.viewer.sortSnippetsByName')) {
+			snippetProvider.sortSnippetsByName = config.sortSnippetsByName();
+			snippetProvider.refresh();
+		}
+		else if (workspaceConfig.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
+				workspaceConfig.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
+				workspaceConfig.affectsConfiguration('snippets.viewer.expendSnippetFiles')) {
 			snippetProvider.refresh();
 		}
 	}));
