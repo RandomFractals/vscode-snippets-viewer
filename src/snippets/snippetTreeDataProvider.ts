@@ -15,6 +15,7 @@ import {SnippetLoader} from './snippetLoader';
 import * as config from '../config';
 
 export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage | SnippetFile | Snippet> {
+	public combineLanguageSnippets: boolean = config.combineLanguageSnippets();
 	private readonly _onDidChangeTreeData: EventEmitter<SnippetLanguage | undefined> = 
 		new EventEmitter<SnippetLanguage | undefined>();
 	readonly onDidChangeTreeData: Event<SnippetLanguage | undefined> = this._onDidChangeTreeData.event;
@@ -47,7 +48,7 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 			return await this.snippetLoader.getSnippetLanguages();
 		}
 		else if (element instanceof SnippetLanguage) {
-			if (config.combineLanguageSnippets()) {
+			if (this.combineLanguageSnippets) {
 				let snippets = await this.snippetLoader.getSnippets(element);
 				if (config.sortSnippetsByName()) {
 					snippets = snippets.sort((a, b) => a.name.localeCompare(b.name));

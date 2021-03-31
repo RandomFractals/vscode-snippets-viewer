@@ -15,8 +15,27 @@ import {
 	Snippet
 } 
 from './snippets/snippets'
+import {SnippetTreeDataProvider} from './snippets/snippetTreeDataProvider';
 
-export function registerCommands(context: ExtensionContext) {
+export function registerCommands(context: ExtensionContext, snippetProvider: SnippetTreeDataProvider) {
+  context.subscriptions.push(
+		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh())
+	);
+
+  context.subscriptions.push(
+		commands.registerCommand(`snippets.viewer.combineLanguageSnippets`, () => {
+      snippetProvider.combineLanguageSnippets = true;
+      snippetProvider.refresh();
+    })
+	);
+
+  context.subscriptions.push(
+		commands.registerCommand(`snippets.viewer.groupSnippetsByFile`, () => {
+      snippetProvider.combineLanguageSnippets = false;
+      snippetProvider.refresh();
+    })
+	);
+
   context.subscriptions.push(
     commands.registerCommand(`snippets.viewer.insertSnippet`, (snippetBody: string | string[]) => {
       let snippetAsString;

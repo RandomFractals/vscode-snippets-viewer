@@ -7,6 +7,7 @@ import {
 	TreeView
 } 
 from 'vscode';
+import * as config from './config';
 import {registerCommands} from './commands';
 import {SnippetLoader} from './snippets/snippetLoader';
 import {SnippetLanguage} from './snippets/snippets';
@@ -18,7 +19,7 @@ export function activate(context: ExtensionContext) {
 	const snippetProvider: SnippetTreeDataProvider = new SnippetTreeDataProvider(snippetLoader);
 	const snippetView = window.createTreeView('snippets.view', {
 		treeDataProvider: snippetProvider,
-		showCollapseAll: false,
+		showCollapseAll: true,
 	});
 
 	// check for active editor changes
@@ -36,24 +37,20 @@ export function activate(context: ExtensionContext) {
 		}
 	});
 
-	// add snippets refresh command
-	context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh())
-	);
-
 	// check for tree view settings changes
-	context.subscriptions.push(workspace.onDidChangeConfiguration(config => {
-    if (config.affectsConfiguration('snippets.viewer.combineLanguageSnippets') ||
-				config.affectsConfiguration('snippets.viewer.expendSnippetFiles') ||
-				config.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
-				config.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
-				config.affectsConfiguration('snippets.viewer.sortSnippetsByName')) {
+	context.subscriptions.push(workspace.onDidChangeConfiguration(workspaceConfig => {
+    if (workspaceConfig.affectsConfiguration('snippets.viewer.combineLanguageSnippets') ||
+				workspaceConfig.affectsConfiguration('snippets.viewer.expendSnippetFiles') ||
+				workspaceConfig.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
+				workspaceConfig.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
+				workspaceConfig.affectsConfiguration('snippets.viewer.sortSnippetsByName')) {
+			snippetProvider.combineLanguageSnippets = config.combineLanguageSnippets();
 			snippetProvider.refresh();
 		}
 	}));
 
-	// add other snippet viewer commands
-	registerCommands(context);
+	// add snippets viewer commands
+	registerCommands(context, snippetProvider);
 }
 
 export function deactivate() {}

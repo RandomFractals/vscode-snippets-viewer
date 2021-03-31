@@ -2,7 +2,7 @@
 	"name": "snippets-viewer",
 	"displayName": "Snippets Viewer",
 	"description": "VSCode Snippets Viewer",
-	"version": "1.4.0",
+	"version": "1.5.0",
 	"categories": [
 		"Snippets"
 	],
@@ -41,13 +41,29 @@
 		"theme": "dark"
 	},
 	"activationEvents": [
+		"onCommand:snippets.viewer.combineLanguageSnippets",
+		"onCommand:snippets.viewer.groupSnippetsByFile",
 		"onCommand:snippets.viewer.refreshSnippets",
+		"onCommand:snippets.viewer.openSnippetFile",
+		"onCommand:snippets.viewer.insertSnippet",
 		"onCommand:snippets.viewer.viewSettings",
 		"onView:snippets.view"
 	],
 	"main": "./dist/extension.js",
 	"contributes": {
 		"commands": [
+			{
+				"command": "snippets.viewer.combineLanguageSnippets",
+				"title": "Combine Language Snippets",
+				"category": "Snippets Viewer",
+				"icon": "$(chevron-down)"
+			},
+			{
+				"command": "snippets.viewer.groupSnippetsByFile",
+				"title": "Group Snippets by File",
+				"category": "Snippets Viewer",
+				"icon": "$(chevron-right)"
+			},
 			{
 				"command": "snippets.viewer.refreshSnippets",
 				"title": "Refresh",
@@ -61,6 +77,12 @@
 				"icon": "$(symbol-reference)"
 			},
 			{
+				"command": "snippets.viewer.insertSnippet",
+				"title": "Insert Snippet",
+				"category": "Snippets Viewer",
+				"icon": "$(symbol-snippet)"
+			},
+			{
 				"command": "snippets.viewer.viewSettings",
 				"title": "View Settings",
 				"category": "Snippets Viewer",
@@ -69,6 +91,16 @@
 		],	
 		"menus": {
 			"view/title": [
+				{
+					"command": "snippets.viewer.combineLanguageSnippets",
+					"when": "view == snippets.view",
+					"group": "navigation"
+				},
+				{
+					"command": "snippets.viewer.groupSnippetsByFile",
+					"when": "view == snippets.view",
+					"group": "navigation"
+				},
 				{
 					"command": "snippets.viewer.refreshSnippets",
 					"when": "view == snippets.view",
@@ -90,6 +122,10 @@
 			"commandPalette": [
 				{
 					"command": "snippets.viewer.openSnippetFile",
+					"when": "never"
+				},
+				{
+					"command": "snippets.viewer.insertSnippet",
 					"when": "never"
 				}
 			]
