@@ -73,7 +73,7 @@ export class SnippetLoader {
 		return Promise.resolve(snippetLanguages.sort((a, b) => a.language.localeCompare(b.language)));
 	}
 
-	async getProjectSnippetFiles(): Promise<SnippetFile[] {
+	async getProjectSnippetFiles(): Promise<SnippetFile[]> {
 		return new Promise(async (resolve, reject) => {
 			let snippetFiles: SnippetFile[] = [];
 			const workspaceFolders = workspace.workspaceFolders;

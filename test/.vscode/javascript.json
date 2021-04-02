@@ -1,6 +1,6 @@
 {
 	"Console log": {
-		"prefix": "log",
+		"prefix": "clog",
 		"body": [
 			"console.log('$1');",
 			"$2"
