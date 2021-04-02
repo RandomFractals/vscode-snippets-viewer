@@ -85,7 +85,7 @@ export class SnippetLoader {
 						if (!vscodeDirectoryExists) {
 							return [];
 						}
-						return this.getDirectorySnippetFiles(vscodeDirectoryPath, `${workspaceFolder.name} Snippets`);
+						return this.getDirectorySnippetFiles(vscodeDirectoryPath, `/${workspaceFolder.name} Snippets`);
 					})
 				));
 			}
