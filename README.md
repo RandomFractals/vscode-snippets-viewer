@@ -15,7 +15,8 @@ Snippets Viewer ⇥ for VSCode
 # Features
 
 - View extension snippets grouped by language in the Snippets Tree View ⎇
-- Auto-select and expend language snippets on active text editor change
+- View user defined and project snippets with multiple workspace folders
+- Auto-select and expand language snippets on active text editor change
 - See snippet prefix and shortcut keystrokes in the Snippets tree view
 - View snippet description and preview snippet body in the Snippets tree view markdown tooltip
 - Insert a snippet from the Snippets tree view into the active code editor
