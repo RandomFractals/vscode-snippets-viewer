@@ -2,6 +2,16 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
+## v1.6.0 - [2021-04-02]
+- [#12](https://github.com/RandomFractals/vscode-snippets-viewer/issues/12)
+Add user defined snippets display to the snippets tree view
+- [#46](https://github.com/RandomFractals/vscode-snippets-viewer/issues/46)
+Add project scoped snippets loading and display
+- [#48](https://github.com/RandomFractals/vscode-snippets-viewer/issues/48)
+Relable Expand snippet files settings, code, and docs
+- [#49](https://github.com/RandomFractals/vscode-snippets-viewer/issues/49)
+Package and publish user defined and project snippets release
+
 ## v1.5.0 - [2021-03-31]
 - [#17](https://github.com/RandomFractals/vscode-snippets-viewer/issues/17)
 Add combine snippets by language, group by snippet file, and collapse all snippets tree view toggles
