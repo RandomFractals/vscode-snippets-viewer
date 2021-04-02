@@ -2,7 +2,8 @@ import {
 	ExtensionContext,
 	TreeItemCollapsibleState,
   extensions,
-	window
+	window,
+	workspace
 } 
 from 'vscode';
 import {
@@ -60,16 +61,56 @@ export class SnippetLoader {
 			}
     });
 
-		// get user defined snippet languages
+		// get user defined snippet languages and files
 		const userSnippetsDirectoryPath: string = path.join(
 			this.context.globalStorageUri.fsPath, '..', '..', '..', 'User', 'snippets');
 		const userSnippetFiles: SnippetFile[] = 
-			await this.getDirectoryFileSnippets(userSnippetsDirectoryPath, 'User Snippets');
+			await this.getDirectorySnippetFiles(userSnippetsDirectoryPath, 'User Snippets');
+
+		// get project snippet languages and files
+		const projectSnippetFiles: SnippetFile[] = await this.getProjectSnippetFiles();
 		
 		return Promise.resolve(snippetLanguages.sort((a, b) => a.language.localeCompare(b.language)));
 	}
 
-	async getDirectoryFileSnippets(directoryPath: string, snippetFileLabel: string): Promise<SnippetFile[]> {
+	async getProjectSnippetFiles(): Promise<SnippetFile[] {
+		return new Promise(async (resolve, reject) => {
+			let snippetFiles: SnippetFile[] = [];
+			const workspaceFolders = workspace.workspaceFolders;
+			if (workspaceFolders) {
+				snippetFiles = Array.prototype.concat.apply([], await Promise.all(
+					workspaceFolders.map(async workspaceFolder => {
+						const vscodeDirectoryPath: string = path.join(workspaceFolder.uri.fsPath, '.vscode');
+						const vscodeDirectoryExists: boolean = await this.directoryExists(vscodeDirectoryPath);
+						if (!vscodeDirectoryExists) {
+							return [];
+						}
+						return this.getDirectorySnippetFiles(vscodeDirectoryPath, `${workspaceFolder.name} Snippets`);
+					})
+				));
+			}
+			return resolve(snippetFiles);
+		});
+	}
+
+	async directoryExists(directoryPath: string): Promise<boolean> {
+		return new Promise((resolve, reject) => {
+			try {
+				fs.stat(directoryPath, (err, file) => {
+					if (!err && file.isDirectory()) {
+						return resolve(true);
+					} 
+					else {
+						return resolve(false);
+					}
+				});
+			} catch (err) {
+				return reject(false);
+			}
+		});
+	}
+	
+	async getDirectorySnippetFiles(directoryPath: string, snippetFileLabel: string): Promise<SnippetFile[]> {
 		return new Promise((resolve, reject) => {
 			fs.readdir(directoryPath, (err, fileNames) => {
 				if (err) {
