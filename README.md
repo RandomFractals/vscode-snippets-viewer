@@ -23,7 +23,7 @@ Snippets Viewer ⇥ for VSCode
 - Go to the snippet definition in a snippet file
 - Toggle built-in language extension snippets display
 - Skip language snippets option for the specified languages in extension settings
-- Expend snippet files on snippet language tree node expend
+- Expand snippet files on snippet language tree node expand
 - Combine language snippets without snippets extension name grouping
 - Sort snippets by definition order in a snippet file
 - Sort snippets by name
@@ -50,7 +50,7 @@ Install [Snippets Viewer ⇥](https://marketplace.visualstudio.com/items?itemNam
 | Setting | Type | Default Value | Description |
 | ------- | ---- | ------------- | ----------- |
 | `snippets.viewer.combineLanguageSnippets` | boolean | `false` | Combine language snippets in the Snippets tree view.|
-| `snippets.viewer.expendSnippetFiles` | boolean | `false` | Expend snippet files on snippet language tree node expend in the Snippets tree view.|
+| `snippets.viewer.expandSnippetFiles` | boolean | `false` | Expand snippet files on snippet language tree node expand in the Snippets tree view.|
 | `snippets.viewer.showBuiltInExtensionSnippets` | boolean | `true` | Show built-in language extension snippets in the Snippets tree view. |
 | `snippets.viewer.skipLanguageSnippets` | string | | Comma delimited list of languages to skip snippets display in the Snippets tree view. |
 | `snippets.viewer.sortSnippetsByName` | boolean | `false` | Sort loaded snippets by name in Snippets tree view. |

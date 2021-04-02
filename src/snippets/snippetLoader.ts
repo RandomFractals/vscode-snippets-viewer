@@ -141,7 +141,7 @@ export class SnippetLoader {
 	}
 
 	getSnippetFileCollapsibleState(): TreeItemCollapsibleState {
-		if (config.expendSnippetFiles()) {
+		if (config.expandSnippetFiles()) {
 			return TreeItemCollapsibleState.Expanded;
 		}
 		return TreeItemCollapsibleState.Collapsed;

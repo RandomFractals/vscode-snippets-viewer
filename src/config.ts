@@ -11,8 +11,8 @@ export function combineLanguageSnippets(): boolean {
   return <boolean>workspace.getConfiguration('snippets.viewer').get('combineLanguageSnippets');
 }
 
-export function expendSnippetFiles(): boolean {
-  return <boolean>workspace.getConfiguration('snippets.viewer').get('expendSnippetFiles');
+export function expandSnippetFiles(): boolean {
+  return <boolean>workspace.getConfiguration('snippets.viewer').get('expandSnippetFiles');
 }
 
 export function sortSnippetsByName(): boolean {

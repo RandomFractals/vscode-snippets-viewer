@@ -49,7 +49,7 @@ export function activate(context: ExtensionContext) {
 		}
 		else if (workspaceConfig.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
 				workspaceConfig.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
-				workspaceConfig.affectsConfiguration('snippets.viewer.expendSnippetFiles')) {
+				workspaceConfig.affectsConfiguration('snippets.viewer.expandSnippetFiles')) {
 			snippetProvider.refresh();
 		}
 	}));

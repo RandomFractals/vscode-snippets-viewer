@@ -210,10 +210,10 @@
 					"default": false,
 					"description": "Combine language snippets in the Snippets tree view."
 				},
-				"snippets.viewer.expendSnippetFiles": {
+				"snippets.viewer.expandSnippetFiles": {
 					"type": "boolean",
 					"default": false,
-					"description": "Expend snippet files on snippet language tree node expend in the Snippets tree view."
+					"description": "Expand snippet files on snippet language tree node expand in the Snippets tree view."
 				},
 				"snippets.viewer.sortSnippetsByName": {
 					"type": "boolean",
