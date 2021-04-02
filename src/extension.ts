@@ -15,7 +15,7 @@ import {SnippetTreeDataProvider} from './snippets/snippetTreeDataProvider';
 
 export function activate(context: ExtensionContext) {
 	// create snippets tree view
-	const snippetLoader: SnippetLoader = new SnippetLoader();
+	const snippetLoader: SnippetLoader = new SnippetLoader(context);
 	const snippetProvider: SnippetTreeDataProvider = new SnippetTreeDataProvider(snippetLoader);
 	const snippetView = window.createTreeView('snippets.view', {
 		treeDataProvider: snippetProvider,

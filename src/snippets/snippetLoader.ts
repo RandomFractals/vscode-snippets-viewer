@@ -1,13 +1,16 @@
 import {
+	ExtensionContext,
 	TreeItemCollapsibleState,
-  window,
-  extensions
-} from 'vscode';
+  extensions,
+	window
+} 
+from 'vscode';
 import {
 	SnippetLanguage, 
 	SnippetFile, 
 	Snippet
-} from './snippets'
+} 
+from './snippets'
 import * as config from '../config';
 import * as jsonc from 'jsonc-parser';
 import * as fs from 'fs';
@@ -17,7 +20,7 @@ export class SnippetLoader {
 
 	public snippetLanguages: Map<string, SnippetLanguage> = new Map<string, SnippetLanguage>();
 
-	constructor() {
+	constructor(private context: ExtensionContext) {
   }
 
 	async getSnippetLanguages(): Promise<SnippetLanguage[]> {
@@ -56,7 +59,44 @@ export class SnippetLoader {
 				}
 			}
     });
+
+		// get user defined snippet languages
+		const userSnippetsDirectoryPath: string = path.join(
+			this.context.globalStorageUri.fsPath, '..', '..', '..', 'User', 'snippets');
+		const userSnippetFiles: SnippetFile[] = 
+			await this.getDirectoryFileSnippets(userSnippetsDirectoryPath, 'User Snippets');
+		
 		return Promise.resolve(snippetLanguages.sort((a, b) => a.language.localeCompare(b.language)));
+	}
+
+	async getDirectoryFileSnippets(directoryPath: string, snippetFileLabel: string): Promise<SnippetFile[]> {
+		return new Promise((resolve, reject) => {
+			fs.readdir(directoryPath, (err, fileNames) => {
+				if (err) {
+					window.showErrorMessage(`Error reading directory ${directoryPath} \n ${err.message}`);
+					return reject([]);
+				}
+				const snippetFiles: SnippetFile[] = [];
+				const skipLanguages: string[] = config.skipLanguages();
+				fileNames.forEach(fileName => {
+					const filePath: string = path.join(directoryPath, fileName);
+					const language: string = path.parse(fileName).name.toLowerCase();
+					if (fileName.endsWith('.json') && skipLanguages.indexOf(language) < 0) {
+						const snippetFile: SnippetFile = 
+							new SnippetFile(snippetFileLabel, filePath, language, this.getSnippetFileCollapsibleState());
+						if (!this.snippetLanguages.has(language)) {
+							// create snippets language
+							const snippetLanguage: SnippetLanguage = new SnippetLanguage(language);
+							this.snippetLanguages.set(language, snippetLanguage);
+						}
+						// add snippet file to language snippets
+						this.snippetLanguages.get(language)?.snippetFiles.push(snippetFile);
+						snippetFiles.push(snippetFile);
+					}
+				});
+				return resolve(snippetFiles);
+			});	
+		});
 	}
 
 	getSnippetFileCollapsibleState(): TreeItemCollapsibleState {
