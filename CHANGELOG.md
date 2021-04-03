@@ -2,6 +2,19 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
+## v1.7.0 - [2021-04-03]
+- [#50](https://github.com/RandomFractals/vscode-snippets-viewer/issues/50)
+Add Focus on Active Editor Snippets setting
+- [#51](https://github.com/RandomFractals/vscode-snippets-viewer/issues/51)
+Optionally expand snippet file tree nodes on active editor change
+- [#52](https://github.com/RandomFractals/vscode-snippets-viewer/issues/52)
+Add Show Only Active Editor Language snippets setting
+- [#53](https://github.com/RandomFractals/vscode-snippets-viewer/issues/53)
+Add links to code snippets doc in features list
+- [#54](https://github.com/RandomFractals/vscode-snippets-viewer/issues/54)
+Package and publish snippets filtering and docs update release
+
+
 ## v1.6.0 - [2021-04-02]
 - [#12](https://github.com/RandomFractals/vscode-snippets-viewer/issues/12)
 Add user defined snippets display to the snippets tree view
