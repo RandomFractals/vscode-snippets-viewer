@@ -2,7 +2,7 @@
 	"name": "snippets-viewer",
 	"displayName": "Snippets Viewer",
 	"description": "VSCode Snippets Viewer",
-	"version": "1.6.0",
+	"version": "1.7.0",
 	"categories": [
 		"Snippets"
 	],
@@ -219,6 +219,11 @@
 					"type": "boolean",
 					"default": false,
 					"description": "Sort loaded snippets by name in the Snippets tree view."
+				},
+				"snippets.viewer.focusOnActiveEditorSnippets": {
+					"type": "boolean",
+					"default": false,
+					"description": "Focus on active editor snippets when Snippets tree view is visible."
 				}
 			}
 		}

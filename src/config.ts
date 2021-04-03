@@ -19,6 +19,10 @@ export function sortSnippetsByName(): boolean {
   return <boolean>workspace.getConfiguration('snippets.viewer').get('sortSnippetsByName');
 }
 
+export function focusOnActiveEditorSnippets(): boolean {
+  return <boolean>workspace.getConfiguration('snippets.viewer').get('focusOnActiveEditorSnippets');
+}
+
 export function skipLanguages(): string[] {
   let skipLanguages: string[] = [];
   let skipLanguageSnippets: string = <string>workspace.getConfiguration('snippets.viewer').get('skipLanguageSnippets');

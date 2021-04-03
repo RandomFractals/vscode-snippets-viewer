@@ -30,7 +30,7 @@ export function activate(context: ExtensionContext) {
 			if (snippetsLanguage) {
 				snippetView.reveal(snippetsLanguage, {
 					select: true, 
-					focus: true,
+					focus: config.focusOnActiveEditorSnippets(),
 					expand: true
 				});
 			}

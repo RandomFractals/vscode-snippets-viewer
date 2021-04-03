@@ -52,6 +52,7 @@ Install [Snippets Viewer ⇥](https://marketplace.visualstudio.com/items?itemNam
 | ------- | ---- | ------------- | ----------- |
 | `snippets.viewer.combineLanguageSnippets` | boolean | `false` | Combine language snippets in the Snippets tree view.|
 | `snippets.viewer.expandSnippetFiles` | boolean | `false` | Expand snippet files on snippet language tree node expand in the Snippets tree view.|
+| `snippets.viewer.focusOnActiveEditorSnippets` | boolean | `false` | Focus on active editor snippets when Snippets tree view is visible. |
 | `snippets.viewer.showBuiltInExtensionSnippets` | boolean | `true` | Show built-in language extension snippets in the Snippets tree view. |
 | `snippets.viewer.skipLanguageSnippets` | string | | Comma delimited list of languages to skip snippets display in the Snippets tree view. |
 | `snippets.viewer.sortSnippetsByName` | boolean | `false` | Sort loaded snippets by name in Snippets tree view. |
