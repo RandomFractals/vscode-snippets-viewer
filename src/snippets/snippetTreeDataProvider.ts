@@ -1,8 +1,10 @@
 import {
   Event, 
   EventEmitter,
+	TextEditor,
 	TreeDataProvider, 
-  TreeItem
+  TreeItem,
+	window
 } 
 from 'vscode';
 import {
@@ -45,8 +47,19 @@ export class SnippetTreeDataProvider implements TreeDataProvider<SnippetLanguage
 
 	async getChildren(element?: SnippetLanguage | SnippetFile): Promise<SnippetLanguage[] | SnippetFile[] | Snippet[]> {
 		if (!element) {
-			// get languages from built-in extensions and snippets extensions
-			return await this.snippetLoader.getSnippetLanguages();
+			// get languages from built-in and snippets extensions
+			const snippetLanguages: SnippetLanguage[] = await this.snippetLoader.getSnippetLanguages();
+			if (config.showOnlyActiveEditorLanguageSnippets()) {
+				const activeTextEditor: TextEditor | undefined = window.activeTextEditor;
+				if (activeTextEditor) {
+					const editorLanguage: string = activeTextEditor.document.languageId;
+					const snippetsLanguage: SnippetLanguage | undefined = this.snippetLoader.snippetLanguages.get(editorLanguage);
+					if (snippetsLanguage) {
+						return [snippetsLanguage];	
+					}
+				}
+			}
+			return snippetLanguages;
 		}
 		else if (element instanceof SnippetLanguage) {
 			if (this.combineLanguageSnippets) {

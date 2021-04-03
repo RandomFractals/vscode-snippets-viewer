@@ -27,6 +27,10 @@ export function activate(context: ExtensionContext) {
 		if (textEditor && snippetView.visible) {
 			const editorLanguage: string = textEditor.document.languageId;
 			const snippetsLanguage: SnippetLanguage | undefined = snippetLoader.snippetLanguages.get(editorLanguage);
+			if (config.showOnlyActiveEditorLanguageSnippets()) {
+				// reload snippets
+				snippetProvider.refresh();
+			}
 			if (snippetsLanguage) {
 				const expandSnippetLevels: number = config.expandSnippetFiles() ? 2: 1; // levels to expand
 				snippetView.reveal(snippetsLanguage, {
@@ -50,7 +54,8 @@ export function activate(context: ExtensionContext) {
 		}
 		else if (workspaceConfig.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
 				workspaceConfig.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
-				workspaceConfig.affectsConfiguration('snippets.viewer.expandSnippetFiles')) {
+				workspaceConfig.affectsConfiguration('snippets.viewer.expandSnippetFiles') ||
+				workspaceConfig.affectsConfiguration('snippets.viewer.showOnlyActiveEditorLanguageSnippets')) {
 			snippetProvider.refresh();
 		}
 	}));

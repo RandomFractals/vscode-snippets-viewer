@@ -223,7 +223,12 @@
 				"snippets.viewer.focusOnActiveEditorSnippets": {
 					"type": "boolean",
 					"default": false,
-					"description": "Focus on active editor snippets when Snippets tree view is visible."
+					"description": "Focus on active editor snippets when the Snippets tree view is visible."
+				},
+				"snippets.viewer.showOnlyActiveEditorLanguageSnippets": {
+					"type": "boolean",
+					"default": false,
+					"description": "Show only active editor language snippets in the Snippets tree view."
 				}
 			}
 		}

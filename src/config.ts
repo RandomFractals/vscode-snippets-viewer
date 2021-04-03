@@ -23,6 +23,10 @@ export function focusOnActiveEditorSnippets(): boolean {
   return <boolean>workspace.getConfiguration('snippets.viewer').get('focusOnActiveEditorSnippets');
 }
 
+export function showOnlyActiveEditorLanguageSnippets(): boolean {
+  return <boolean>workspace.getConfiguration('snippets.viewer').get('showOnlyActiveEditorLanguageSnippets');
+}
+
 export function skipLanguages(): string[] {
   let skipLanguages: string[] = [];
   let skipLanguageSnippets: string = <string>workspace.getConfiguration('snippets.viewer').get('skipLanguageSnippets');
