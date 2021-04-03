@@ -28,10 +28,11 @@ export function activate(context: ExtensionContext) {
 			const editorLanguage: string = textEditor.document.languageId;
 			const snippetsLanguage: SnippetLanguage | undefined = snippetLoader.snippetLanguages.get(editorLanguage);
 			if (snippetsLanguage) {
+				const expandSnippetLevels: number = config.expandSnippetFiles() ? 2: 1; // levels to expand
 				snippetView.reveal(snippetsLanguage, {
 					select: true, 
 					focus: config.focusOnActiveEditorSnippets(),
-					expand: true
+					expand: expandSnippetLevels
 				});
 			}
 		}
