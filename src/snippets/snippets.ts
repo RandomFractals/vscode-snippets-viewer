@@ -100,6 +100,9 @@ function getFileExtension(language: string): string {
 		case 'powershell':
 			fileExtension = 'ps1';
 			break;
+		case 'python':
+			fileExtension = 'py';
+			break;	
 		case 'stylus':
 			fileExtension = 'styl';
 			break;
