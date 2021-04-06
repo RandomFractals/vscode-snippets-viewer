@@ -1,12 +1,11 @@
 # vscode-snippets-viewer
 
 [![Apache-2.0 License](https://img.shields.io/badge/license-Apache2-orange.svg?color=green)](http://opensource.org/licenses/Apache-2.0)
-<a href='https://ko-fi.com/dataPixy' target='_blank' title='support: https://ko-fi.com/dataPixy'>
-  <img height='24' style='border:0px;height:20px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=2' alt='https://ko-fi.com/dataPixy' /></a>
-
 [![Version](https://vsmarketplacebadge.apphb.com/version/RandomFractalsInc.snippets-viewer.svg?color=orange&style=?style=for-the-badge&logo=visual-studio-code)](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.snippets-viewer)
 [![Installs](https://vsmarketplacebadge.apphb.com/installs/RandomFractalsInc.snippets-viewer.svg?color=orange)](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.snippets-viewer)
 [![Downloads](https://vsmarketplacebadge.apphb.com/downloads/RandomFractalsInc.snippets-viewer.svg?color=orange)](https://marketplace.visualstudio.com/items?itemName=RandomFractalsInc.snippets-viewer)
+<a href='https://ko-fi.com/dataPixy' target='_blank' title='support: https://ko-fi.com/dataPixy'>
+  <img height='24' style='border:0px;height:20px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=2' alt='https://ko-fi.com/dataPixy' /></a>
 
 Snippets Viewer ⇥ for VSCode
 
