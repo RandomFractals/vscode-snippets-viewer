@@ -81,15 +81,45 @@ export class SnippetLoader {
 				snippetFiles = Array.prototype.concat.apply([], await Promise.all(
 					workspaceFolders.map(async workspaceFolder => {
 						const vscodeDirectoryPath: string = path.join(workspaceFolder.uri.fsPath, '.vscode');
-						const vscodeDirectoryExists: boolean = await this.directoryExists(vscodeDirectoryPath);
-						if (!vscodeDirectoryExists) {
-							return [];
-						}
 						return this.getDirectorySnippetFiles(vscodeDirectoryPath, `/${workspaceFolder.name} Snippets`);
 					})
 				));
 			}
 			return resolve(snippetFiles);
+		});
+	}
+	
+	async getDirectorySnippetFiles(directoryPath: string, snippetFileLabel: string): Promise<SnippetFile[]> {
+		const directoryExists: boolean = await this.directoryExists(directoryPath);
+		if (!directoryExists) {
+			return [];
+		}
+		return new Promise((resolve, reject) => {
+			fs.readdir(directoryPath, (err, fileNames) => {
+				if (err) {
+					window.showErrorMessage(`Error reading directory: ${directoryPath} \n ${err.message}`);
+					return reject([]);
+				}
+				const snippetFiles: SnippetFile[] = [];
+				const skipLanguages: string[] = config.skipLanguages();
+				fileNames.forEach(fileName => {
+					const filePath: string = path.join(directoryPath, fileName);
+					const language: string = path.parse(fileName).name.toLowerCase();
+					if (fileName.endsWith('.json') && skipLanguages.indexOf(language) < 0) {
+						const snippetFile: SnippetFile = 
+							new SnippetFile(snippetFileLabel, filePath, language, this.getSnippetFileCollapsibleState());
+						if (!this.snippetLanguages.has(language)) {
+							// create new snippets language
+							const snippetLanguage: SnippetLanguage = new SnippetLanguage(language);
+							this.snippetLanguages.set(language, snippetLanguage);
+						}
+						// add snippet file to language snippets
+						this.snippetLanguages.get(language)?.snippetFiles.push(snippetFile);
+						snippetFiles.push(snippetFile);
+					}
+				});
+				return resolve(snippetFiles);
+			});
 		});
 	}
 
@@ -107,36 +137,6 @@ export class SnippetLoader {
 			} catch (err) {
 				return reject(false);
 			}
-		});
-	}
-	
-	async getDirectorySnippetFiles(directoryPath: string, snippetFileLabel: string): Promise<SnippetFile[]> {
-		return new Promise((resolve, reject) => {
-			fs.readdir(directoryPath, (err, fileNames) => {
-				if (err) {
-					window.showErrorMessage(`Error reading directory ${directoryPath} \n ${err.message}`);
-					return reject([]);
-				}
-				const snippetFiles: SnippetFile[] = [];
-				const skipLanguages: string[] = config.skipLanguages();
-				fileNames.forEach(fileName => {
-					const filePath: string = path.join(directoryPath, fileName);
-					const language: string = path.parse(fileName).name.toLowerCase();
-					if (fileName.endsWith('.json') && skipLanguages.indexOf(language) < 0) {
-						const snippetFile: SnippetFile = 
-							new SnippetFile(snippetFileLabel, filePath, language, this.getSnippetFileCollapsibleState());
-						if (!this.snippetLanguages.has(language)) {
-							// create snippets language
-							const snippetLanguage: SnippetLanguage = new SnippetLanguage(language);
-							this.snippetLanguages.set(language, snippetLanguage);
-						}
-						// add snippet file to language snippets
-						this.snippetLanguages.get(language)?.snippetFiles.push(snippetFile);
-						snippetFiles.push(snippetFile);
-					}
-				});
-				return resolve(snippetFiles);
-			});	
 		});
 	}
 
