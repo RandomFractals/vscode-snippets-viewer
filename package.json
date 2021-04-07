@@ -111,7 +111,7 @@
 				"category": "Snippets Viewer",
 				"icon": "$(gear)"
 			}
-		],	
+		],
 		"menus": {
 			"view/title": [
 				{
