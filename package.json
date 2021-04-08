@@ -2,7 +2,7 @@
 	"name": "snippets-viewer",
 	"displayName": "Snippets Viewer",
 	"description": "VSCode Snippets Viewer",
-	"version": "1.8.0",
+	"version": "1.9.0",
 	"categories": [
 		"Snippets"
 	],
@@ -103,7 +103,7 @@
 				"command": "snippets.viewer.insertSnippet",
 				"title": "Insert Snippet",
 				"category": "Snippets Viewer",
-				"icon": "$(symbol-snippet)"
+				"icon": "$(export)"
 			},
 			{
 				"command": "snippets.viewer.viewSettings",
@@ -154,6 +154,11 @@
 				{
 					"command": "snippets.viewer.openSnippetFile",
 					"when": "view == snippets.view && viewItem != snippetLanguage",
+					"group": "inline"
+				},
+				{
+					"command": "snippets.viewer.insertSnippet",
+					"when": "view == snippets.view && viewItem == snippet",
 					"group": "inline"
 				}
 			],

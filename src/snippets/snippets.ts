@@ -33,11 +33,6 @@ export class Snippet extends TreeItem {
 			snippetInfo += `\n${snippetDescription}\n___`;
 		}
  		this.tooltip = new MarkdownString(`${snippetInfo}\n\`\`\`${snippetFile.language}\n${snippetBody}\n\`\`\``);
-		this.command = {
-			command: `snippets.viewer.insertSnippet`,
-			title: 'Insert Snippet',
-			arguments: [body]
-		};
 	}
 
 	iconPath = {

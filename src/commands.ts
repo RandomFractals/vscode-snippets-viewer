@@ -63,13 +63,16 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
 	);
 
   context.subscriptions.push(
-    commands.registerCommand(`snippets.viewer.insertSnippet`, (snippetBody: string | string[]) => {
-      let snippetAsString;
-      if (Array.isArray(snippetBody)) {
-        snippetAsString = snippetBody.join('\n');
+    commands.registerCommand(`snippets.viewer.insertSnippet`, (snippet: Snippet) => {
+      let snippetBody: string;
+      if (Array.isArray(snippet.body)) {
+        snippetBody = snippet.body.join('\n');
+      }
+      else {
+        snippetBody = snippet.body;
       }
       commands.executeCommand('editor.action.insertSnippet', {
-        snippet: snippetAsString ? snippetAsString : snippetBody,
+        snippet: snippetBody,
       });
       commands.executeCommand('workbench.action.focusActiveEditorGroup');
     })
