@@ -2,11 +2,17 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
+## v1.9.0 - [2021-04-08]
+- [#60](https://github.com/RandomFractals/vscode-snippets-viewer/issues/60)
+Combine snippets tree view toggles for grouping and sorting snippets
+- [#61](https://github.com/RandomFractals/vscode-snippets-viewer/issues/61)
+Add dedicated insert snippet inline context menu to snippet tree view items
+
 ## v1.8.0 - [2021-04-07]
 - [#55](https://github.com/RandomFractals/vscode-snippets-viewer/issues/55)
 Map Python snippets to use .py file icons in the snippets tree view
 - [#57](https://github.com/RandomFractals/vscode-snippets-viewer/issues/57)
-Show all snippets viewer extension bades on one line in docs
+Show all snippets viewer extension badges on one line in docs
 - [#58](https://github.com/RandomFractals/vscode-snippets-viewer/issues/58)
 Resolve snippets tree view initialization when there are no user snippets
 
