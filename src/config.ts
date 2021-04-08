@@ -36,3 +36,8 @@ export function skipLanguages(): string[] {
   }
   return skipLanguages;
 }
+
+export function updateWorkspaceSetting(name: string, value: boolean) {
+  const settings = workspace.getConfiguration('snippets.viewer', null);
+	settings.update(name, value, false); // update workspace setting
+}

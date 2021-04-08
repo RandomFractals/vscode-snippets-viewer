@@ -116,27 +116,22 @@
 			"view/title": [
 				{
 					"command": "snippets.viewer.combineLanguageSnippets",
-					"when": "view == snippets.view",
+					"when": "view == snippets.view && !config.snippets.viewer.combineLanguageSnippets",
 					"group": "navigation"
 				},
 				{
 					"command": "snippets.viewer.groupSnippetsByFile",
-					"when": "view == snippets.view",
+					"when": "view == snippets.view && config.snippets.viewer.combineLanguageSnippets",
 					"group": "navigation"
 				},
 				{
 					"command": "snippets.viewer.sortSnippetsByName",
-					"when": "view == snippets.view",
+					"when": "view == snippets.view && !config.snippets.viewer.sortSnippetsByName",
 					"group": "navigation"
 				},
 				{
 					"command": "snippets.viewer.sortSnippetsByDefinitionOrder",
-					"when": "view == snippets.view",
-					"group": "navigation"
-				},
-				{
-					"command": "snippets.viewer.skipLanguageSnippets",
-					"when": "view == snippets.view",
+					"when": "view == snippets.view && config.snippets.viewer.sortSnippetsByName",
 					"group": "navigation"
 				},
 				{

@@ -10,6 +10,7 @@ import {
   workspace
 } 
 from 'vscode';
+import * as config from './config';
 import {
 	SnippetFile, 
 	Snippet
@@ -25,28 +26,28 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.combineLanguageSnippets`, () => {
       snippetProvider.combineLanguageSnippets = true;
-      snippetProvider.refresh();
+      config.updateWorkspaceSetting('combineLanguageSnippets', true);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.groupSnippetsByFile`, () => {
       snippetProvider.combineLanguageSnippets = false;
-      snippetProvider.refresh();
+      config.updateWorkspaceSetting('combineLanguageSnippets', false);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.sortSnippetsByName`, () => {
       snippetProvider.sortSnippetsByName = true;
-      snippetProvider.refresh();
+      config.updateWorkspaceSetting('sortSnippetsByName', true);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.sortSnippetsByDefinitionOrder`, () => {
       snippetProvider.sortSnippetsByName = false;
-      snippetProvider.refresh();
+      config.updateWorkspaceSetting('sortSnippetsByName', false);
     })
 	);
 
