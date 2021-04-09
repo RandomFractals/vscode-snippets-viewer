@@ -2,7 +2,7 @@
 	"name": "snippets-viewer",
 	"displayName": "Snippets Viewer",
 	"description": "VSCode Snippets Viewer",
-	"version": "1.9.0",
+	"version": "1.10.0",
 	"categories": [
 		"Snippets",
 		"Other"
