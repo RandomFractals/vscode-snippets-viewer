@@ -4,7 +4,8 @@
 	"description": "VSCode Snippets Viewer",
 	"version": "1.9.0",
 	"categories": [
-		"Snippets"
+		"Snippets",
+		"Other"
 	],
 	"keywords": [
 		"snippets",
