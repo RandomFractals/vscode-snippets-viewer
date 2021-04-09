@@ -1,4 +1,5 @@
 import {
+  ConfigurationTarget,
   workspace
 }
 from 'vscode';
@@ -39,5 +40,10 @@ export function skipLanguages(): string[] {
 
 export function updateWorkspaceSetting(name: string, value: boolean) {
   const settings = workspace.getConfiguration('snippets.viewer', null);
-	settings.update(name, value, false); // update workspace setting
+	settings.update(name, value, ConfigurationTarget.Workspace);
+}
+
+export function updateGlobalSetting(name: string, value: boolean) {
+  const settings = workspace.getConfiguration('snippets.viewer', null);
+  settings.update(name, value, ConfigurationTarget.Global);
 }

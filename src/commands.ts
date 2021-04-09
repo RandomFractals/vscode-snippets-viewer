@@ -8,14 +8,14 @@ import {
   commands,
   window,
   workspace
-} 
+}
 from 'vscode';
 import * as config from './config';
 import {
-	SnippetFile, 
+	SnippetFile,
 	Snippet
-} 
-from './snippets/snippets'
+}
+from './snippets/snippets';
 import {SnippetTreeDataProvider} from './snippets/snippetTreeDataProvider';
 
 export function registerCommands(context: ExtensionContext, snippetProvider: SnippetTreeDataProvider) {
@@ -26,28 +26,28 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.combineLanguageSnippets`, () => {
       snippetProvider.combineLanguageSnippets = true;
-      config.updateWorkspaceSetting('combineLanguageSnippets', true);
+      config.updateGlobalSetting('combineLanguageSnippets', true);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.groupSnippetsByFile`, () => {
       snippetProvider.combineLanguageSnippets = false;
-      config.updateWorkspaceSetting('combineLanguageSnippets', false);
+      config.updateGlobalSetting('combineLanguageSnippets', false);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.sortSnippetsByName`, () => {
       snippetProvider.sortSnippetsByName = true;
-      config.updateWorkspaceSetting('sortSnippetsByName', true);
+      config.updateGlobalSetting('sortSnippetsByName', true);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.sortSnippetsByDefinitionOrder`, () => {
       snippetProvider.sortSnippetsByName = false;
-      config.updateWorkspaceSetting('sortSnippetsByName', false);
+      config.updateGlobalSetting('sortSnippetsByName', false);
     })
 	);
 
