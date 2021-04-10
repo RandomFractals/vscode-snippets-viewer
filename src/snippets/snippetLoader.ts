@@ -105,7 +105,8 @@ export class SnippetLoader {
 				fileNames.forEach(fileName => {
 					const filePath: string = path.join(directoryPath, fileName);
 					const language: string = path.parse(fileName).name.toLowerCase();
-					if (fileName.endsWith('.json') && skipLanguages.indexOf(language) < 0) {
+					if ((fileName.endsWith('.json') || fileName.endsWith('.code-snippets')) && 
+							skipLanguages.indexOf(language) < 0) {
 						const snippetFile: SnippetFile = 
 							new SnippetFile(snippetFileLabel, filePath, language, this.getSnippetFileCollapsibleState());
 						if (!this.snippetLanguages.has(language)) {

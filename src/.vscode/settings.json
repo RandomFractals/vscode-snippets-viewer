@@ -1,4 +1,4 @@
 {
-  "snippets.viewer.expandSnippetFiles": true,
-  "snippets.viewer.sortSnippetsByName": true
+  "snippets.viewer.sortSnippetsByName": true,
+  "snippets.viewer.combineLanguageSnippets": false
 }
