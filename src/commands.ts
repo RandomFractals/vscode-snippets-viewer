@@ -8,16 +8,23 @@ import {
   commands,
   window,
   workspace
-}
-from 'vscode';
+} from 'vscode';
+
 import * as config from './config';
+
 import {
 	SnippetFile,
 	Snippet
-}
-from './snippets/snippets';
+} from './snippets/snippets';
+
 import {SnippetTreeDataProvider} from './snippets/snippetTreeDataProvider';
 
+/**
+ * Registers snippets viewer commands.
+ *
+ * @param context Extension context.
+ * @param snippetProvider Snippets tree data provider.
+ */
 export function registerCommands(context: ExtensionContext, snippetProvider: SnippetTreeDataProvider) {
   context.subscriptions.push(
 		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh())
@@ -99,25 +106,45 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
   );
 }
 
+/**
+ * Scrolls open text document to the specified symbol
+ * to display requested snippet definition in text editor.
+ *
+ * @param document Text document.
+ * @param symbolName Symblol name to locate.
+ */
 async function goToSymbol(document: TextDocument, symbolName: string) {
   const symbols = await getSymbols(document);
-  const findSymbol = symbols.find(symbol => symbol.name === symbolName);
+  const documentSymbol: DocumentSymbol | undefined = symbols.find(symbol => symbol.name === symbolName);
   const activeTextEditor = window.activeTextEditor;
-  if (findSymbol && activeTextEditor) {
-    activeTextEditor.selection = new Selection(findSymbol.range.start, findSymbol.range.start);
-    activeTextEditor.revealRange(findSymbol.range, TextEditorRevealType.AtTop);
+  if (documentSymbol && activeTextEditor) {
+    // create text document selection and reveal range to show document symbol code block
+    activeTextEditor.selection = new Selection(documentSymbol.range.start, documentSymbol.range.start);
+    activeTextEditor.revealRange(documentSymbol.range, TextEditorRevealType.AtTop);
   }
 }
 
+/**
+ * Gets text document symbols.
+ *
+ * @param document Text document.
+ * @returns Text document symbols.
+ */
 async function getSymbols(document: TextDocument): Promise<DocumentSymbol[]> {
   return new Promise(async (resolve, reject) => {
-    let symbols = await commands.executeCommand<DocumentSymbol[]>('vscode.executeDocumentSymbolProvider', document.uri);// tslint:disable-line
+    // get document symbols via built-in vscode document symbol provider
+    let symbols: DocumentSymbol[] = await commands.executeCommand<DocumentSymbol[]>(
+      'vscode.executeDocumentSymbolProvider', document.uri);// tslint:disable-line
+
     if (!symbols || symbols.length === 0) {
+      // retry getting document symbols with a timeout
       setTimeout(async () => {
-        symbols = await commands.executeCommand<DocumentSymbol[]>('vscode.executeDocumentSymbolProvider', document.uri);// tslint:disable-line
+        symbols = await commands.executeCommand<DocumentSymbol[]>(
+          'vscode.executeDocumentSymbolProvider', document.uri);// tslint:disable-line
         return resolve(symbols || []);
       }, 1200);
-    } else {
+    }
+    else {
       return resolve(symbols || []);
     }
   });

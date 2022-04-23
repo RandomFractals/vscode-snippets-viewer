@@ -16,7 +16,7 @@ export function getConfiguration(): WorkspaceConfiguration {
 /**
  * Gets built-in vscode extension snippets display toggle setting.
  *
- * @returns True to display buiilt-in extension snippets, and false otherwise.
+ * @returns True to display built-in extension snippets, and false otherwise.
  */
 export function showBuiltInExtensionSnippets(): boolean {
   return <boolean>getConfiguration().get('showBuiltInExtensionSnippets');
