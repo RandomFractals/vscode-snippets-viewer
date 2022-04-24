@@ -49,7 +49,17 @@ Install [Snippets Viewer ⇥](https://marketplace.visualstudio.com/items?itemNam
 
 ![Snippets Viewer Settings](https://raw.githubusercontent.com/RandomFractals/vscode-snippets-viewer/main/images/snippets-viewer-settings.png)
 
-**Note**: All Snippet Viewer ⎇ Settings start with `snippets.viewer.` prefix.
+**Note**: All Snippets Viewer ⎇ Settings start with `snippets.viewer.` prefix.
+Example of [`.vscode/settings.json`](https://github.com/RandomFractals/vscode-snippets-viewer/blob/main/.vscode/settings.json) you can use to specify Snippets Viewer ⎇ Settings in open project workspace:
+
+```
+{
+  // Local Snippets viewer settings
+  "snippets.viewer.sortSnippetsByName": false,
+  "snippets.viewer.combineLanguageSnippets": true,
+  "snippets.viewer.expandSnippetFiles": true
+}
+```
 
 | Setting Name | Type | Default Value | Description |
 | ------- | ---- | ------------- | ----------- |
