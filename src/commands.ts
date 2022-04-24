@@ -11,6 +11,7 @@ import {
 } from 'vscode';
 
 import * as config from './config';
+import * as constants from './constants';
 
 import {
 	SnippetFile,
@@ -27,51 +28,53 @@ import {SnippetTreeDataProvider} from './snippets/snippetTreeDataProvider';
  */
 export function registerCommands(context: ExtensionContext, snippetProvider: SnippetTreeDataProvider) {
   context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.refreshSnippets`, () => snippetProvider.refresh())
+		commands.registerCommand(constants.RefreshSnippetsCommand, () => snippetProvider.refresh())
 	);
 
   context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.combineLanguageSnippets`, () => {
+		commands.registerCommand(constants.CombineLanguageSnippetsCommand, () => {
       snippetProvider.combineLanguageSnippets = true;
       config.updateGlobalSetting('combineLanguageSnippets', true);
     })
 	);
 
   context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.groupSnippetsByFile`, () => {
+		commands.registerCommand(constants.GroupSnippetsByFileCommand, () => {
       snippetProvider.combineLanguageSnippets = false;
       config.updateGlobalSetting('combineLanguageSnippets', false);
     })
 	);
 
   context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.sortSnippetsByName`, () => {
+		commands.registerCommand(constants.SortSnippetsByNameCommand, () => {
       snippetProvider.sortSnippetsByName = true;
       config.updateGlobalSetting('sortSnippetsByName', true);
     })
 	);
 
   context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.sortSnippetsByDefinitionOrder`, () => {
+		commands.registerCommand(constants.SortSnippetsByDefinitionOrderCommand, () => {
       snippetProvider.sortSnippetsByName = false;
       config.updateGlobalSetting('sortSnippetsByName', false);
     })
 	);
 
   context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.skipLanguageSnippets`, () => {
-      commands.executeCommand('workbench.action.openSettings', 'snippets.viewer.skipLanguageSnippets');
+		commands.registerCommand(constants.SkipLanguageSnippetsCommand, () => {
+      commands.executeCommand(constants.WorkbenchActionOpenSettings, 'snippets.viewer.skipLanguageSnippets');
     })
 	);
 
   context.subscriptions.push(
-		commands.registerCommand(`snippets.viewer.viewSettings`, () => {
-      commands.executeCommand('workbench.action.openSettings', 'snippets.viewer');
+		commands.registerCommand(constants.ViewSettingsCommand, () => {
+      // show snippets viewer settings
+      commands.executeCommand(constants.WorkbenchActionOpenSettings, constants.ExtensionId);
     })
 	);
 
   context.subscriptions.push(
-    commands.registerCommand(`snippets.viewer.insertSnippet`, (snippet: Snippet) => {
+    commands.registerCommand(constants.InsertSnippetCommand, (snippet: Snippet) => {
+      // construct snippet code body
       let snippetBody: string;
       if (Array.isArray(snippet.body)) {
         snippetBody = snippet.body.join('\n');
@@ -79,15 +82,18 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
       else {
         snippetBody = snippet.body;
       }
-      commands.executeCommand('editor.action.insertSnippet', {
-        snippet: snippetBody,
-      });
-      commands.executeCommand('workbench.action.focusActiveEditorGroup');
+
+      // insert snippet in active text editor
+      commands.executeCommand(constants.EditorActionInsertSnippet, {snippet: snippetBody});
+
+      // release focus from snippets tree view to active text editor
+      commands.executeCommand(constants.WorkbenchActionFocusActiveEditorGroup);
     })
   );
 
   context.subscriptions.push(
-    commands.registerCommand(`snippets.viewer.openSnippetFile`, (snippet: SnippetFile | Snippet) => {
+    commands.registerCommand(constants.OpenSnippetFileCommand, (snippet: SnippetFile | Snippet) => {
+      // determine snippets file path
       let filePath: string;
       if (snippet instanceof Snippet) {
         filePath = snippet.snippetFile.filePath;
@@ -95,9 +101,12 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
       else {
         filePath = snippet.filePath;
       }
+
+      // open snippets file
       workspace.openTextDocument(Uri.file(filePath)).then((document) => {
         window.showTextDocument(document).then(() => {
           if (snippet instanceof Snippet) {
+            // scroll to requested snippet symbol name
             goToSymbol(document, snippet.name);
           }
         });
@@ -134,13 +143,13 @@ async function getSymbols(document: TextDocument): Promise<DocumentSymbol[]> {
   return new Promise(async (resolve, reject) => {
     // get document symbols via built-in vscode document symbol provider
     let symbols: DocumentSymbol[] = await commands.executeCommand<DocumentSymbol[]>(
-      'vscode.executeDocumentSymbolProvider', document.uri);// tslint:disable-line
+      constants.VSCodeExecuteDocumentSymbolProvider, document.uri);
 
     if (!symbols || symbols.length === 0) {
       // retry getting document symbols with a timeout
       setTimeout(async () => {
         symbols = await commands.executeCommand<DocumentSymbol[]>(
-          'vscode.executeDocumentSymbolProvider', document.uri);// tslint:disable-line
+          constants.VSCodeExecuteDocumentSymbolProvider, document.uri);
         return resolve(symbols || []);
       }, 1200);
     }

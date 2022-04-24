@@ -6,6 +6,8 @@ import {
 } from 'vscode';
 
 import * as config from './config';
+import * as constants from './constants';
+
 import { registerCommands } from './commands';
 import { SnippetLoader } from './snippets/snippetLoader';
 import { SnippetLanguage } from './snippets/snippets';
@@ -22,7 +24,7 @@ export function activate(context: ExtensionContext) {
   // create snippets tree view
   const snippetLoader: SnippetLoader = new SnippetLoader(context);
   const snippetProvider: SnippetTreeDataProvider = new SnippetTreeDataProvider(snippetLoader);
-  const snippetView = window.createTreeView('snippets.view', {
+  const snippetView = window.createTreeView(constants.SnippetsView, {
     treeDataProvider: snippetProvider,
     showCollapseAll: true
   });

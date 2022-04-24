@@ -4,13 +4,15 @@ import {
   workspace
 } from 'vscode';
 
+import * as constants from './constants';
+
 /**
  * Gets snippets viewer configuration settings.
  *
  * @returns Worskpace configuration for the snippets viewer.
  */
 export function getConfiguration(): WorkspaceConfiguration {
-  return workspace.getConfiguration('snippets.viewer');
+  return workspace.getConfiguration(constants.ExtensionId);
 }
 
 /**
@@ -94,7 +96,7 @@ export function skipLanguages(): string[] {
  * @param value New snippets viewer setting value.
  */
 export function updateWorkspaceSetting(name: string, value: boolean) {
-  const settings = workspace.getConfiguration('snippets.viewer', null);
+  const settings = workspace.getConfiguration(constants.ExtensionId, null);
   settings.update(name, value, ConfigurationTarget.Workspace);
 }
 
@@ -105,6 +107,6 @@ export function updateWorkspaceSetting(name: string, value: boolean) {
  * @param value New snippets viewer setting value.
  */
 export function updateGlobalSetting(name: string, value: boolean) {
-  const settings = workspace.getConfiguration('snippets.viewer', null);
+  const settings = workspace.getConfiguration(constants.ExtensionId, null);
   settings.update(name, value, ConfigurationTarget.Global);
 }
