@@ -5,6 +5,7 @@ import {
 } from 'vscode';
 
 import * as constants from './constants';
+import { Settings } from './settings';
 
 /**
  * Gets snippets viewer configuration settings.
@@ -21,7 +22,7 @@ export function getConfiguration(): WorkspaceConfiguration {
  * @returns True to display built-in extension snippets, and false otherwise.
  */
 export function showBuiltInExtensionSnippets(): boolean {
-  return <boolean>getConfiguration().get('showBuiltInExtensionSnippets');
+  return <boolean>getConfiguration().get(Settings.ShowBuiltInExtensionSnippets);
 }
 
 /**
@@ -30,7 +31,7 @@ export function showBuiltInExtensionSnippets(): boolean {
  * @returns True to combine all language snippets, and false otherwise.
  */
 export function combineLanguageSnippets(): boolean {
-  return <boolean>getConfiguration().get('combineLanguageSnippets');
+  return <boolean>getConfiguration().get(Settings.CombineLanguageSnippets);
 }
 
 /**
@@ -39,7 +40,7 @@ export function combineLanguageSnippets(): boolean {
  * @returns True to expand all snippets file nodes, and false otherwise.
  */
 export function expandSnippetFiles(): boolean {
-  return <boolean>getConfiguration().get('expandSnippetFiles');
+  return <boolean>getConfiguration().get(Settings.ExpandSnippetFiles);
 }
 
 /**
@@ -48,7 +49,7 @@ export function expandSnippetFiles(): boolean {
  * @returns True to sort snippets by name, and false to list them by definition order in snippet files.
  */
 export function sortSnippetsByName(): boolean {
-  return <boolean>getConfiguration().get('sortSnippetsByName');
+  return <boolean>getConfiguration().get(Settings.SortSnippetsByName);
 }
 
 /**
@@ -58,7 +59,7 @@ export function sortSnippetsByName(): boolean {
  * based on the open text document language id, and false otherwise.
  */
 export function focusOnActiveEditorSnippets(): boolean {
-  return <boolean>getConfiguration().get('focusOnActiveEditorSnippets');
+  return <boolean>getConfiguration().get(Settings.FocusOnActiveEditorSnippets);
 }
 
 /**
@@ -68,7 +69,7 @@ export function focusOnActiveEditorSnippets(): boolean {
  * and false to show all language snippets at all times.
  */
 export function showOnlyActiveEditorLanguageSnippets(): boolean {
-  return <boolean>getConfiguration().get('showOnlyActiveEditorLanguageSnippets');
+  return <boolean>getConfiguration().get(Settings.ShowOnlyActiveEditorLanguageSnippets);
 }
 
 /**
@@ -78,7 +79,7 @@ export function showOnlyActiveEditorLanguageSnippets(): boolean {
  */
 export function skipLanguages(): string[] {
   let skipLanguages: string[] = [];
-  let skipLanguageSnippets: string = <string>getConfiguration().get('skipLanguageSnippets');
+  let skipLanguageSnippets: string = <string>getConfiguration().get(Settings.SkipLanguageSnippets);
   if (skipLanguageSnippets.length > 0) {
     // remove white spaces from the skip language snippets setting
     skipLanguageSnippets = skipLanguageSnippets.trim().replace(/\s/g, '');

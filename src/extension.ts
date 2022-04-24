@@ -9,6 +9,7 @@ import * as config from './config';
 import * as constants from './constants';
 
 import { registerCommands } from './commands';
+import { Settings } from './settings';
 import { SnippetLoader } from './snippets/snippetLoader';
 import { SnippetLanguage } from './snippets/snippets';
 import { SnippetTreeDataProvider } from './snippets/snippetTreeDataProvider';
@@ -55,18 +56,18 @@ export function activate(context: ExtensionContext) {
 
   // update snippets viewer setttings and refresh snippets tree view on configuraiton changes
   context.subscriptions.push(workspace.onDidChangeConfiguration(workspaceConfig => {
-    if (workspaceConfig.affectsConfiguration('snippets.viewer.combineLanguageSnippets')) {
+    if (workspaceConfig.affectsConfiguration(`${constants.ExtensionId}.${Settings.CombineLanguageSnippets}`)) {
       snippetProvider.combineLanguageSnippets = config.combineLanguageSnippets();
       snippetProvider.refresh();
     }
-    else if (workspaceConfig.affectsConfiguration('snippets.viewer.sortSnippetsByName')) {
+    else if (workspaceConfig.affectsConfiguration(`${constants.ExtensionId}.${Settings.SortSnippetsByName}`)) {
       snippetProvider.sortSnippetsByName = config.sortSnippetsByName();
       snippetProvider.refresh();
     }
-    else if (workspaceConfig.affectsConfiguration('snippets.viewer.showBuiltInExtensionSnippets') ||
-      workspaceConfig.affectsConfiguration('snippets.viewer.skipLanguageSnippets') ||
-      workspaceConfig.affectsConfiguration('snippets.viewer.expandSnippetFiles') ||
-      workspaceConfig.affectsConfiguration('snippets.viewer.showOnlyActiveEditorLanguageSnippets')) {
+    else if (workspaceConfig.affectsConfiguration(`${constants.ExtensionId}.${Settings.ShowBuiltInExtensionSnippets}`) ||
+      workspaceConfig.affectsConfiguration(`${constants.ExtensionId}.${Settings.SkipLanguageSnippets}`) ||
+      workspaceConfig.affectsConfiguration(`${constants.ExtensionId}.${Settings.ExpandSnippetFiles}`) ||
+      workspaceConfig.affectsConfiguration(`${constants.ExtensionId}.${Settings.ShowOnlyActiveEditorLanguageSnippets}`)) {
       snippetProvider.refresh();
     }
   }));

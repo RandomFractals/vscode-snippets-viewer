@@ -12,6 +12,7 @@ import {
 
 import * as config from './config';
 import * as constants from './constants';
+import { Settings } from './settings';
 
 import {
 	SnippetFile,
@@ -34,34 +35,35 @@ export function registerCommands(context: ExtensionContext, snippetProvider: Sni
   context.subscriptions.push(
 		commands.registerCommand(constants.CombineLanguageSnippetsCommand, () => {
       snippetProvider.combineLanguageSnippets = true;
-      config.updateGlobalSetting('combineLanguageSnippets', true);
+      config.updateGlobalSetting(Settings.CombineLanguageSnippets, true);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(constants.GroupSnippetsByFileCommand, () => {
       snippetProvider.combineLanguageSnippets = false;
-      config.updateGlobalSetting('combineLanguageSnippets', false);
+      config.updateGlobalSetting(Settings.CombineLanguageSnippets, false);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(constants.SortSnippetsByNameCommand, () => {
       snippetProvider.sortSnippetsByName = true;
-      config.updateGlobalSetting('sortSnippetsByName', true);
+      config.updateGlobalSetting(Settings.SortSnippetsByName, true);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(constants.SortSnippetsByDefinitionOrderCommand, () => {
       snippetProvider.sortSnippetsByName = false;
-      config.updateGlobalSetting('sortSnippetsByName', false);
+      config.updateGlobalSetting(Settings.SortSnippetsByName, false);
     })
 	);
 
   context.subscriptions.push(
 		commands.registerCommand(constants.SkipLanguageSnippetsCommand, () => {
-      commands.executeCommand(constants.WorkbenchActionOpenSettings, 'snippets.viewer.skipLanguageSnippets');
+      commands.executeCommand(constants.WorkbenchActionOpenSettings,
+        `${constants.ExtensionId}.${Settings.SkipLanguageSnippets}`);
     })
 	);
 
