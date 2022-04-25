@@ -14,17 +14,17 @@ Snippets Viewer ⇥ for VSCode
 # Features
 
 - View [built-in](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_builtin-snippets) and [extension snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_install-snippets-from-the-marketplace) grouped by language in the Snippets Tree View ⎇
-- View [user defined](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets) language snippets
-- View [project scoped](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-scope) language snippets for workspaces with multiple folders
-- Combine language snippets without snippets file grouping in the Snippets Tree View ⎇
+- View [user-defined](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_create-your-own-snippets) language snippets
+- View [project-scoped](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_snippet-scope) language snippets for workspaces with multiple folders
+- Combine language snippets without snippets file grouping display in the Snippets Tree View ⎇
 - Toggle [built-in](https://code.visualstudio.com/docs/editor/userdefinedsnippets#_builtin-snippets) language extension snippets display
 - Skip language snippets option for the specified languages in extension settings
 - Expand snippet files on snippet language tree node expand
 - Auto-select and expand language snippets on active text editor change
-- Filter snippets display by active text editor language only
-- See snippet prefix and shortcut keystrokes in the Snippets tree view
-- View snippet description and preview snippet body in the Snippets tree view markdown tooltip
-- Insert a snippet from the Snippets tree view into the active code editor
+- Show only snippets for the active text editor language
+- See snippet prefix and shortcut keystrokes in the Snippets Tree View ⎇
+- View snippet description and preview snippet body in the Snippets Tree View ⎇ markdown tooltip
+- Insert a snippet from the Snippets Tree View ⎇ into the active code text editor
 - Open snippets file to view snippets JSON config
 - Go to the snippet definition in a snippet file
 - Sort snippets by definition order in a snippet file
