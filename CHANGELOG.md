@@ -2,6 +2,36 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
+## v1.10.0 - [2022-04-25]
+- [#64](https://github.com/RandomFractals/vscode-snippets-viewer/issues/64)
+Use global configuration target for toggles
+- [#65](https://github.com/RandomFractals/vscode-snippets-viewer/issues/65)
+Compile to ES2019
+- [#66](https://github.com/RandomFractals/vscode-snippets-viewer/issues/66)
+Add Other Category to extension manifest
+- [#67](https://github.com/RandomFractals/vscode-snippets-viewer/issues/67)
+Trim packaged vsix files in .vscodeignore
+- [#68](https://github.com/RandomFractals/vscode-snippets-viewer/issues/68)
+Cleanup .gitignore
+- [#69](https://github.com/RandomFractals/vscode-snippets-viewer/issues/69)
+Change view settings to show User snippets view settings
+- [#72](https://github.com/RandomFractals/vscode-snippets-viewer/issues/72)
+Custom snippets not shown
+- [#75](https://github.com/RandomFractals/vscode-snippets-viewer/issues/75)
+Improving settings understanding with simpler words or providing examples
+- [#76](https://github.com/RandomFractals/vscode-snippets-viewer/issues/76)
+Update extension dev dependencies to the latest vscode v1.66.0 stack
+- [#77](https://github.com/RandomFractals/vscode-snippets-viewer/issues/77)
+Remove unpublished eamodio.tsl-problem-matcher extension dependency
+- [#78](https://github.com/RandomFractals/vscode-snippets-viewer/issues/78)
+Refine Snippets viewer code and settings documentation
+- [#79](https://github.com/RandomFractals/vscode-snippets-viewer/issues/79)
+Move extension and command strings to new constants.ts
+- [#80](https://github.com/RandomFractals/vscode-snippets-viewer/issues/80)
+Move snippets viewer setting names to new settings.ts
+- [#81](https://github.com/RandomFractals/vscode-snippets-viewer/issues/81)
+Package and publish settings and docs update release v1.10.0
+
 ## v1.9.0 - [2021-04-08]
 - [#60](https://github.com/RandomFractals/vscode-snippets-viewer/issues/60)
 Combine snippets tree view toggles for grouping and sorting snippets
@@ -42,6 +72,8 @@ Package and publish user defined and project snippets release
 ## v1.5.0 - [2021-03-31]
 - [#17](https://github.com/RandomFractals/vscode-snippets-viewer/issues/17)
 Add combine snippets by language, group by snippet file, and collapse all snippets tree view toggles
+- [#34](https://github.com/RandomFractals/vscode-snippets-viewer/issues/34)
+Create Snippet View Menu for some of the tree view toggles
 - [#43](https://github.com/RandomFractals/vscode-snippets-viewer/issues/43)
 Add Sort Snippets by Name and by Definition Order toggles to the Snippets Tree view
 - [#44](https://github.com/RandomFractals/vscode-snippets-viewer/issues/44)
@@ -51,7 +83,7 @@ Package and publish Snippets tree view toggles update
 
 ## v1.4.0 - [2021-03-30]
 - [#10](https://github.com/RandomFractals/vscode-snippets-viewer/issues/10)
-Auto-select and expend snippets language node based on active editor language id
+Auto-select and expand snippets language node based on active editor language id
 - [#37](https://github.com/RandomFractals/vscode-snippets-viewer/issues/37)
 Map javascriptreact and typescriptreact snippets file icons to what editor shows in file titlebar
 - [#39](https://github.com/RandomFractals/vscode-snippets-viewer/issues/39)
