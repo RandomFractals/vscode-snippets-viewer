@@ -2,6 +2,10 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
+## v1.11.0 - [2022-04-27]
+- [#82](https://github.com/RandomFractals/vscode-snippets-viewer/issues/82)
+Add Snippets Viewer to Education extensions category in vscode marketplace
+
 ## v1.10.0 - [2022-04-25]
 - [#64](https://github.com/RandomFractals/vscode-snippets-viewer/issues/64)
 Use global configuration target for toggles
