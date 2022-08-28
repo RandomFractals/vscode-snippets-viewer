@@ -61,7 +61,7 @@ export class SnippetLoader {
         if (extensionLocation && Array.isArray(snippetsConfig)) {
           snippetsConfig.forEach(snippetConfig => {
             const language: string = snippetConfig.language;
-            if (skipLanguages.indexOf(language) < 0) {
+            if (language && skipLanguages.indexOf(language) < 0) {
               // create snippets file
               const snippetFile: SnippetFile = new SnippetFile(extensionName,
                 path.join(extensionLocation.fsPath, snippetConfig.path),
@@ -96,7 +96,7 @@ export class SnippetLoader {
     // sort loaded snippet languages alphabetically
     return Promise.resolve(snippetLanguages.sort(
       (snippetLanguageA, snippetLanguageB) =>
-        snippetLanguageA.language.localeCompare(snippetLanguageB.language)));
+        snippetLanguageA.language.localeCompare(snippetLanguageB.language, 'en'))); // locale
   }
 
   /**
