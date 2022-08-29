@@ -2,7 +2,7 @@
 
 See [releases](https://github.com/RandomFractals/vscode-snippets-viewer/releases) for source code and `snippets-viewer.vsix` extension package download.
 
-## v1.12.0 - [2022-08-28]
+## v1.12.0 - [2022-08-29]
 - [#83](https://github.com/RandomFractals/vscode-snippets-viewer/issues/83)
 Add extension sponsoring config and republish it
 - [#84](https://github.com/RandomFractals/vscode-snippets-viewer/issues/84)
@@ -13,6 +13,8 @@ Add Snippets Viewer to SCM Providers vscode extensions category
 Remove vscode-eslint extension from recommendations in .vscode/extensions.json
 - [#87](https://github.com/RandomFractals/vscode-snippets-viewer/issues/87)
 Add codeViz keyword to Snippets Viewer manifest
+- [#88](https://github.com/RandomFractals/vscode-snippets-viewer/issues/88)
+Change license to GPL-3.0
 
 ## v1.11.0 - [2022-04-27]
 - [#82](https://github.com/RandomFractals/vscode-snippets-viewer/issues/82)
