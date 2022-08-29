@@ -15,6 +15,8 @@ Remove vscode-eslint extension from recommendations in .vscode/extensions.json
 Add codeViz keyword to Snippets Viewer manifest
 - [#88](https://github.com/RandomFractals/vscode-snippets-viewer/issues/88)
 Change license to GPL-3.0
+- [#89](https://github.com/RandomFractals/vscode-snippets-viewer/issues/89)
+Add explicit Support/Sponsor section to docs
 
 ## v1.11.0 - [2022-04-27]
 - [#82](https://github.com/RandomFractals/vscode-snippets-viewer/issues/82)
